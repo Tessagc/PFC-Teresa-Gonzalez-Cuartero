@@ -1,0 +1,122 @@
+Estructura navegadores del header
+
+navegador admin:
+Mi info - empleados - departamentos - incidencias - nominas - cerrar sesion
+editar/crear/borrar departamentos/empleados
+de empleados, ver sus fichajes y sus nominas
+ver su info, los empleados y los departamentos
+atender incidencias
+ver/generar pdf nomina
+
+navegador jefe:
+Mi info - empleados - departamento - reportar incidencia - nominas - cerrar sesion
+ver departamento/empleados del departamento
+reportar incidencia
+ver/generar pdf nomina
+
+navegador normal:
+Mi info - departamento - reportar incidencia - nominas - cerrar sesion
+ver departamento/su info como empleado
+reportar incidencia
+ver/generar pdf nomina
+
+
+Notas.
+index será el archivo de login
+tras loguearse, te reenvía al archivo con tu información
+al revisar los empleados, se tendrá enlace a un archivo con todos sus datos, no editable desde este.
+El admin, en la visualización de los empleados y departamentos, podrá ver, editar y borrar cada uno.
+Las incidencias y fichajes NO SE BORRSN, las incidencias se marcan como gestionadas o no gestionadas
+no se podrá crear usuario salvo que seas un admin
+
+a hacer hoy:
+loguear nuevos usuarios, uno normal, otro jefe y otro admin
+
+SQL tablas:
+
+CREATE TABLE Departamentos (
+    cod_departamento INT PRIMARY KEY,
+    cod_jefe_departamento INT NULL,
+    nombre VARCHAR(100) NOT NULL,
+    descripcion VARCHAR(255),
+    CONSTRAINT fk_jefe_departamento
+        FOREIGN KEY (cod_jefe_departamento)
+        REFERENCES Empleado(cod_empleado)
+        ON DELETE SET NULL
+        ON UPDATE CASCADE
+);
+
+CREATE TABLE Empleados (
+    cod_empleado INT PRIMARY KEY,
+    dni VARCHAR(20) NOT NULL UNIQUE,
+    nombre VARCHAR(50) NOT NULL,
+    apellidos VARCHAR(80) NOT NULL,
+    telefono_personal VARCHAR(20) NOT NULL,
+    gmail_contacto VARCHAR(100) NOT NULL,
+    gmail_empresarial VARCHAR(100) NOT NULL,
+    puesto VARCHAR(50) NOT NULL,
+    estado ENUM('activo', 'de baja', 'despedido') DEFAULT 'activo',
+    rol ENUM('normal', 'jefe', 'admin') DEFAULT 'normal',
+    password_hash VARCHAR(255) NOT NULL,
+    sueldo_base DECIMAL(10,2),
+    foto VARCHAR(255),
+    cod_departamento INT NULL,
+    CONSTRAINT fk_departamento
+        FOREIGN KEY (cod_departamento)
+        REFERENCES Departamentos(cod_departamento)
+        ON DELETE SET NULL
+        ON UPDATE CASCADE
+);
+
+
+
+CREATE TABLE Nominas (
+    cod_nomina INT PRIMARY KEY,
+    cod_empleado INT NOT NULL,
+    periodo DATE NOT NULL,
+    sueldo_base DECIMAL(10,2) NOT NULL,
+    complementos DECIMAL(10,2) DEFAULT 0,
+    cont_comun DECIMAL(10,2) DEFAULT 0,
+    formacion DECIMAL(10,2) DEFAULT 0,
+    desempleo DECIMAL(10,2) DEFAULT 0,
+    irpf DECIMAL(10,2) DEFAULT 0,
+    total DECIMAL(10,2),
+    CONSTRAINT fk_nomina_empleado
+        FOREIGN KEY (cod_empleado)
+        REFERENCES Empleados(cod_empleado)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+CREATE TABLE Fichajes (
+    cod_fichaje INT PRIMARY KEY,
+    cod_empleado INT NOT NULL,
+    fecha_hora DATETIME NOT NULL,
+    tipo ENUM('entrada','salida') NOT NULL,
+    CONSTRAINT fk_fichaje_empleado
+        FOREIGN KEY (cod_empleado)
+        REFERENCES Empleados(cod_empleado)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+CREATE TABLE Incidencias (
+    cod_incidencia INT PRIMARY KEY,
+    cod_empleado_reportante INT NOT NULL,
+    cod_empleado_gestor INT NULL,
+    descripcion TEXT NOT NULL,
+    gravedad ENUM('baja','media','alta'),
+    atendida BOOLEAN,
+    fecha_creacion DATETIME NOT NULL,
+    fecha_resolucion DATETIME NULL,
+    CONSTRAINT fk_incidencia_empleado_reportante
+        FOREIGN KEY (cod_empleado_reportante)
+        REFERENCES Empleados(cod_empleado)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    CONSTRAINT fk_incidencia_empleado_gestor
+        FOREIGN KEY (cod_empleado_gestor)
+        REFERENCES Empleados(cod_empleado)
+        ON DELETE SET NULL
+        ON UPDATE CASCADE
+);
