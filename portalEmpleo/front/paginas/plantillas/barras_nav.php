@@ -9,7 +9,7 @@
                 
                 <!-- Logo arriba -->
                 <a class='navbar-brand mb-3 fs-5 fw-bold' href='#'>
-                    <h1 class='titulo-grande'>Portal empleo</h1>
+                    <h1 class='titulo-grande'>Portal Empleo</h1>
                 </a>
 
                 <!-- Menú debajo -->
@@ -27,7 +27,7 @@
                         <a class='nav-link px-2' href='#'>Incidencias</a>
                     </li>
                     <li class='nav-item fs-5'>
-                        <a class='nav-link px-2' href='#'>Nóminas</a>
+                        <a class='nav-link px-2' href='mis_nominas.php'>Mis Nóminas</a>
                     </li>
                     <li class='nav-item fs-5'>
                         <a class='nav-link px-2' href='../../back/auth/salir.php'>Cerrar sesion</a>
@@ -45,7 +45,7 @@
                 
                 <!-- Logo arriba -->
                 <a class='navbar-brand mb-3 fs-5 fw-bold' href='#'>
-                    <h1 class='titulo-grande'>Portal empleo</h1>
+                    <h1 class='titulo-grande'>Portal Empleo</h1>
                 </a>
 
                 <!-- Menú debajo -->
@@ -63,7 +63,7 @@
                         <a class='nav-link px-2' href='#'>Reportar incidencia</a>
                     </li>
                     <li class='nav-item fs-5'>
-                        <a class='nav-link px-2' href='#'>Mis nominas</a>
+                        <a class='nav-link px-2' href='mis_nominas.php'>Mis Nóminas</a>
                     </li>
                     <li class='nav-item fs-5'>
                         <a class='nav-link px-2' href='../../back/auth/salir.php'>Cerrar sesion</a>
@@ -80,7 +80,7 @@
                 
                 <!-- Logo arriba -->
                 <a class='navbar-brand mb-3 fs-5 fw-bold' href='#'>
-                    <h1 class='titulo-grande'>Portal empleo</h1>
+                    <h1 class='titulo-grande'>Portal Empleo</h1>
                 </a>
 
                 <!-- Menú debajo -->
@@ -95,7 +95,7 @@
                         <a class='nav-link px-2' href='#'>Reportar incidencia</a>
                     </li>
                     <li class='nav-item fs-5'>
-                        <a class='nav-link px-2' href='#'>Mis nominas</a>
+                        <a class='nav-link px-2' href='mis_nominas.php'>Mis Nóminas</a>
                     </li>
                     <li class='nav-item fs-5'>
                         <a class='nav-link px-2' href='../../back/auth/salir.php'>Cerrar sesion</a>

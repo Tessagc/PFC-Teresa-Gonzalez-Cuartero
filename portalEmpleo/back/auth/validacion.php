@@ -36,7 +36,7 @@
                 $_SESSION['logueado'] = true;
                 $_SESSION['hora_sesion'] = time();
 
-                header("location:../../front/paginas/mi_info.php?usuario=".$info['cod_empleado']);
+                header("location:../../front/paginas/mi_info.php");
                 exit();
             } else {
                 header("location:../../index.php?error=2");

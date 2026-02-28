@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prueba</title>
+    <title>Mi informacion</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
 </head>
 <body>
     
         <?php
+            // archivos requeridos
             try {
+                require_once("../../back/auth/sesion.php");
                 require("plantillas/barras_nav.php");
                 require("../../back/auth/conexion_bbdd.php");
             } catch (\Throwable $th) {
@@ -19,12 +21,11 @@
 
             // mostrar info y navegacion segun usuario
             try {
-                if (isset($_GET['usuario'])) {
                     // conexion
                     $conexion = mysqli_connect($servidor, $usuario, $contra, $bbdd);
 
                     // sacar la info del usuario para trabajar
-                    $consulta = mysqli_query($conexion, "SELECT * FROM empleados WHERE cod_empleado = ".$_GET['usuario']);
+                    $consulta = mysqli_query($conexion, "SELECT * FROM empleados WHERE cod_empleado = ".$id_sesion_usuario);
                     $usuario = mysqli_fetch_array($consulta);
 
                     // barras de navegacion
@@ -40,6 +41,7 @@
 
                     // informacion del usuario impresa
     echo "<main>";
+                    echo "<h2>Informacion del empleado ".$usuario['nombre']." ".$usuario['apellidos']."</h2>";
                     echo "<p>Nombre: ". $usuario['nombre']."</p>";
                     echo "<p>Apellidos: ". $usuario['apellidos']."</p>";
                     echo "<p>Telefono: ". $usuario['telefono_personal']."</p>";
@@ -47,14 +49,12 @@
                     echo "<p>Gmail empresa: ". $usuario['gmail_empresarial']."</p>";
                     echo "<p>Puesto: ". $usuario['puesto']."</p>";
                     echo "<p>Estado: ". $usuario['puesto']."</p>";
+                    echo "<p>Sueldo base: ". $usuario['sueldo_base']."</p>";
                     echo "<p>Foto: ". $usuario['foto']."</p>";
                     if ($usuario['foto'] == "") {
                         echo "<img src='../../media/empleados/default.png' alt='foto generica'>";
                     }
     echo "</main>";
-                } else {
-                    echo "No se mando un usuario";
-                }
                 
             } catch (mysqli_sql_exception $sql) {
                 echo "No se pudo acceder a la bbdd: $sql";
