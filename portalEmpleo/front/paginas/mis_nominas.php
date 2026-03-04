@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mis nominas</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/bootstrap.min.js"></script>
 </head>
 <body>
         <?php
@@ -49,7 +50,6 @@
                     echo "<p>Formación: ".$nomina_usuario['formacion']." Desempleo: ".$nomina_usuario['desempleo']."</p>";
                     echo "<p>IRPF: ".$nomina_usuario['irpf']." Sueldo neto: ".$nomina_usuario['total']."</p>";
                     echo "</section>";
-
                 }
 
         echo "<main>";

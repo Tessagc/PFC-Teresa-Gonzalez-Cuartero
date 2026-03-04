@@ -120,3 +120,28 @@ CREATE TABLE Incidencias (
         ON DELETE SET NULL
         ON UPDATE CASCADE
 );
+
+
+
+
+Funciones JavaScript:
+Mostrar opción de negar/aceptar borrado de empleado/departamento
+el js de Bootstrap
+posible: comprobar inputs validos
+
+
+
+
+
+Para calcular nomina
+total bruto = sueldo_bruto + complementos
+contingencia común = 
+formación =
+desempleo = 
+IRPF = total bruto * % dependiente
+
+
+
+
+
+

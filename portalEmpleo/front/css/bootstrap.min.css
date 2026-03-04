@@ -18,3 +18,16 @@
 .bg-grey {
     background-color: lightgrey;
 }
+
+/* Dropdown del nav de administradores */
+
+.dropdown-menu {
+    position: absolute !important;
+    top: 100%;
+    left: 0;
+    z-index: 2000;
+}
+
+.img-empleado {
+    width: 30%;
+}

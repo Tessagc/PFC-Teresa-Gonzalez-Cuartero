@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi informacion</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/bootstrap.min.js"></script>
 </head>
 <body>
     
@@ -38,7 +39,7 @@
                         echo $barra_normal;
                     }
     echo "</header>";
-
+                    echo date("Y-m-d H:i:s");
                     // informacion del usuario impresa
     echo "<main>";
                     echo "<h2>Informacion del empleado ".$usuario['nombre']." ".$usuario['apellidos']."</h2>";
@@ -48,7 +49,7 @@
                     echo "<p>Gmail personal: ". $usuario['gmail_contacto']."</p>";
                     echo "<p>Gmail empresa: ". $usuario['gmail_empresarial']."</p>";
                     echo "<p>Puesto: ". $usuario['puesto']."</p>";
-                    echo "<p>Estado: ". $usuario['puesto']."</p>";
+                    echo "<p>Estado: ". $usuario['estado']."</p>";
                     echo "<p>Sueldo base: ". $usuario['sueldo_base']."</p>";
                     echo "<p>Foto: ". $usuario['foto']."</p>";
                     if ($usuario['foto'] == "") {
