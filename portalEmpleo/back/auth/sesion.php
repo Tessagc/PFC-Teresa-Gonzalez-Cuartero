@@ -21,8 +21,8 @@
 
 
     // tiempo maximo de la sesion
-    if($_SESSION['hora_sesion'] + 1800 < time()) {
-        // caduca al pasar 30 minutos segundos
+    if($_SESSION['hora_sesion'] + 28800 < time()) {
+        // caduca al pasar 8 horas
 
         // registramos la salida
         $cod_usuario = $_SESSION['id_usuario'];

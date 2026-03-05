@@ -38,7 +38,7 @@ CREATE TABLE Departamentos (
     cod_departamento INT PRIMARY KEY,
     cod_jefe_departamento INT NULL,
     nombre VARCHAR(100) NOT NULL,
-    descripcion VARCHAR(255),
+    descripcion VARCHAR(255) NOT NULL,
     CONSTRAINT fk_jefe_departamento
         FOREIGN KEY (cod_jefe_departamento)
         REFERENCES Empleado(cod_empleado)
@@ -58,7 +58,7 @@ CREATE TABLE Empleados (
     estado ENUM('activo', 'de baja', 'despedido') DEFAULT 'activo',
     rol ENUM('normal', 'jefe', 'admin') DEFAULT 'normal',
     password_hash VARCHAR(255) NOT NULL,
-    sueldo_base DECIMAL(10,2),
+    sueldo_base DECIMAL(10,2) NOT NULL,
     foto VARCHAR(255),
     cod_departamento INT NULL,
     CONSTRAINT fk_departamento
@@ -75,17 +75,19 @@ CREATE TABLE Nominas (
     cod_empleado INT NOT NULL,
     periodo DATE NOT NULL,
     sueldo_base DECIMAL(10,2) NOT NULL,
-    complementos DECIMAL(10,2) DEFAULT 0,
-    cont_comun DECIMAL(10,2) DEFAULT 0,
-    formacion DECIMAL(10,2) DEFAULT 0,
-    desempleo DECIMAL(10,2) DEFAULT 0,
-    irpf DECIMAL(10,2) DEFAULT 0,
-    total DECIMAL(10,2),
+    complementos DECIMAL(10,2) DEFAULT 0 NOT NULL,
+    cont_comun DECIMAL(10,2) DEFAULT 0 NOT NULL,
+    formacion DECIMAL(10,2) DEFAULT 0 NOT NULL,
+    desempleo DECIMAL(10,2) DEFAULT 0 NOT NULL,
+    irpf DECIMAL(10,2) DEFAULT 0 NOT NULL,
+    total DECIMAL(10,2) NOT NULL,
     CONSTRAINT fk_nomina_empleado
         FOREIGN KEY (cod_empleado)
         REFERENCES Empleados(cod_empleado)
         ON DELETE CASCADE
-        ON UPDATE CASCADE
+        ON UPDATE CASCADE,
+	CONSTRAINT uc_empleado_periodo 
+	UNIQUE (cod_empleado, periodo);
 );
 
 CREATE TABLE Fichajes (
@@ -105,8 +107,8 @@ CREATE TABLE Incidencias (
     cod_empleado_reportante INT NOT NULL,
     cod_empleado_gestor INT NULL,
     descripcion TEXT NOT NULL,
-    gravedad ENUM('baja','media','alta'),
-    atendida BOOLEAN,
+    gravedad ENUM('baja','media','alta') default alta,
+    atendida BOOLEAN default false,
     fecha_creacion DATETIME NOT NULL,
     fecha_resolucion DATETIME NULL,
     CONSTRAINT fk_incidencia_empleado_reportante
@@ -135,12 +137,33 @@ posible: comprobar inputs validos
 
 Para calcular nomina
 total bruto = sueldo_bruto + complementos
-contingencia común = 
-formación =
-desempleo = 
+contingencia común = (total bruto + complementos) * 0.047
+formación = (total bruto + complementos) * 0.001
+desempleo = (total bruto + complementos) * 0.0155
 IRPF = total bruto * % dependiente
+total neto = sueldo bruto - cont comun - formación - desempleo - IRPF
 
-
+ejemplo en SQL
+SELECT 
+    cod_nomina,
+    cod_empleado,
+    periodo,
+    sueldo_base,
+    complementos,
+    
+    -- Cálculos
+    (sueldo_base + complementos) * 0.047 AS cot_comun,
+    (sueldo_base + complementos) * 0.0155 AS desempleo,
+    (sueldo_base + complementos) * 0.001 AS formacion,
+    (sueldo_base + complementos) * 0.15 AS irpf,
+    
+    -- Total neto
+    (sueldo_base + complementos)
+    - ((sueldo_base + complementos) * 0.047)
+    - ((sueldo_base + complementos) * 0.0155)
+    - ((sueldo_base + complementos) * 0.001)
+    - ((sueldo_base + complementos) * 0.15) AS total
+FROM Nominas;
 
 
 

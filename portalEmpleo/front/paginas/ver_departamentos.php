@@ -59,7 +59,7 @@ echo "<main>";
                     echo "<section class='border border-black'>";
                         echo "<p>Nombre departamento: ". $departamentos['nombre']."</p>";
                         echo "<p>Descripción: ". $departamentos['descripcion']."</p>";
-                        echo "<p>Jefe departamento: ". $departamentos['nombre_jefe']." ".$departamento['apellidos_jefe']."</p>
+                        echo "<p>Jefe departamento: ". $departamentos['nombre_jefe']." ".$departamentos['apellidos_jefe']."</p>
                         <button type='button' class='btnBorrar'>Borrar</button>
                         <div class='panel-borrado' hidden>
                             <p>¿Esta seguro de que quiere borra este empleado?</p>

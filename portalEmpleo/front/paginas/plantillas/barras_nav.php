@@ -31,7 +31,7 @@
                         </ul>
                     </li>
                     <li class='nav-item fs-5'>
-                        <a class='nav-link px-2' href='#'>Incidencias</a>
+                        <a class='nav-link px-2' href='ver_incidencias.php'>Incidencias</a>
                     </li>
                     <li class='nav-item fs-5'>
                         <a class='nav-link px-2' href='mis_nominas.php'>Mis Nóminas</a>
