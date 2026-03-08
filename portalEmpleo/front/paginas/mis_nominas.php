@@ -44,11 +44,12 @@
                 
 
                 while ($nomina_usuario = mysqli_fetch_array($consulta2)) {
-                    echo "<section class='border border-black'>";
-                    echo "<p>Periodo pago: ".$nomina_usuario['periodo']." Sueldo bruto: ".$nomina_usuario['sueldo_base']."</p>";
+                    echo "<section class='border border-black p-2'>";
+                    echo "<p>Fecha de pago: ".$nomina_usuario['periodo']." Sueldo bruto: ".$nomina_usuario['sueldo_base']."</p>";
                     echo "<p>Complementos: ".$nomina_usuario['complementos']." Contingencia comun: ".$nomina_usuario['cont_comun']."</p>";
                     echo "<p>Formación: ".$nomina_usuario['formacion']." Desempleo: ".$nomina_usuario['desempleo']."</p>";
                     echo "<p>IRPF: ".$nomina_usuario['irpf']." Sueldo neto: ".$nomina_usuario['total']."</p>";
+                    echo "<a href='generar_nomina.php?cod_nomina=".$nomina_usuario['cod_nomina']."' class='cancelarBorrado btn btn-secondary'>Generar PDF</a>";
                     echo "</section>";
                 }
 

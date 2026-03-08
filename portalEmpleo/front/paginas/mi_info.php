@@ -39,7 +39,6 @@
                         echo $barra_normal;
                     }
     echo "</header>";
-                    echo date("Y-m-d H:i:s");
                     // informacion del usuario impresa
     echo "<main>";
                     echo "<h2>Informacion del empleado ".$usuario['nombre']." ".$usuario['apellidos']."</h2>";
