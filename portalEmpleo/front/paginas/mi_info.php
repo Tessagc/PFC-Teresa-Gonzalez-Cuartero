@@ -24,6 +24,8 @@
             try {
                     // conexion
                     $conexion = mysqli_connect($servidor, $usuario, $contra, $bbdd);
+                    mysqli_set_charset($conexion, "utf8mb4");
+
 
                     // sacar la info del usuario para trabajar
                     $consulta = mysqli_query($conexion, "SELECT * FROM empleados WHERE cod_empleado = ".$id_sesion_usuario);

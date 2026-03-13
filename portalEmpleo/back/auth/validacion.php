@@ -38,7 +38,7 @@
 
                 // registrar la sesion de entrada
                 $cod_usuario = $info['cod_empleado'];
-                $fecha_entrada = date("Y-m-d H:i:s");;
+                $fecha_entrada = date("Y-m-d H:i:s");
 
                 $consulta = mysqli_query($conexion, "INSERT INTO fichajes (cod_empleado, fecha_hora, tipo) VALUES ('$cod_usuario', '$fecha_entrada', 'entrada')");
 
