@@ -8,7 +8,7 @@
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/funciones.js"></script>
 </head>
-<body>
+<body class='fondo-web'>
     <?php
         // archivos necesarios
         try {

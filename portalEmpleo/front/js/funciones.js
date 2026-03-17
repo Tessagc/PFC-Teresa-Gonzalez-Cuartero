@@ -5,22 +5,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // borrados
-    const btnBorrar = document.querySelectorAll(".btnBorrar");
-    const panelBorrar = document.querySelectorAll(".panel-borrado");
-    const cancelarBorrado = document.querySelectorAll(".cancelarBorrado");
+    const btnOpciones = document.querySelectorAll(".btnOpciones");
+    const panelOpciones = document.querySelectorAll(".panel-opciones");
+    const cancelarOpciones = document.querySelectorAll(".cancelarOpciones");
 
 
-    // desplegar opciones de borrado
-    btnBorrar.forEach((btn, id) => {
+    // desplegar opciones
+    btnOpciones.forEach((btn, id) => {
         btn.addEventListener("click", () => {
-            panelBorrar[id].removeAttribute("hidden");
+            panelOpciones[id].removeAttribute("hidden");
         })
     })
 
-    // cancelar el borrado y ocultar las opciones de borrado
-    cancelarBorrado.forEach((cancelador, id) => {
+    // cancelar y ocultar las opciones
+    cancelarOpciones.forEach((cancelador, id) => {
         cancelador.addEventListener("click", () => {
-            panelBorrar[id].setAttribute("hidden", true);
+            panelOpciones[id].setAttribute("hidden", true);
         })
     })
 })

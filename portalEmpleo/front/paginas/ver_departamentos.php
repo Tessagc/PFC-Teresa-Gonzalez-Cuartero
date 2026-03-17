@@ -8,7 +8,7 @@
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/funciones.js"></script>
 </head>
-<body>
+<body class='fondo-web'>
     <?php
         // archivos necesarios
         try {
@@ -61,11 +61,12 @@ echo "<main>";
                         echo "<p>Nombre departamento: ". $departamentos['nombre']."</p>";
                         echo "<p>Descripción: ". $departamentos['descripcion']."</p>";
                         echo "<p>Jefe departamento: ". $departamentos['nombre_jefe']." ".$departamentos['apellidos_jefe']."</p>
-                        <button type='button' class='btnBorrar'>Borrar</button>
-                        <div class='panel-borrado' hidden>
-                            <p>¿Esta seguro de que quiere borra este empleado?</p>
+                        <button type='button' class='btnOpciones'>Borrar</button>
+                        <button type='button' class=''>Editar</button>
+                        <div class='panel-opciones' hidden>
+                            <p>¿Esta seguro de que quiere borra este departamento? Si lo hace, todos los empleados del mismo quedaran sin departamentos asociado</p>
                             <a href='mis_nominas.php?id=".$departamentos['cod_departamento']."' class='btn btn-primary'>Si</a>
-                            <button type='button' class='cancelarBorrado btn btn-danger'>No</button>
+                            <button type='button' class='cancelarOpciones btn btn-danger'>No</button>
                         </div>";
                     echo "</section>";
                 }

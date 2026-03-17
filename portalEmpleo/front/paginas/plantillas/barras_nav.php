@@ -3,7 +3,7 @@
 
     <!-- Admin -->
     <?php 
-        $barra_admin = "<nav class='navbar navbar-light border border-dark bg-grey'>
+        $barra_admin = "<nav class='navbar navbar-light border border-dark bg-grey py-3'>
             <div class='container-fluid d-flex flex-column align-items-center'>
                 
                 <!-- Logo arriba -->
@@ -27,7 +27,7 @@
                         <a class='nav-link px-2 dropdown-toggle' href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false'>Departamentos</a>
                         <ul class='dropdown-menu bg-grey'>
                             <li class='bg-grey'><a class='dropdown-item' href='ver_departamentos.php'>Ver departamentos</a></li>
-                            <li class='bg-grey'><a class='dropdown-item' href='#'>Añadir departamentos</a></li>
+                            <li class='bg-grey'><a class='dropdown-item' href='nuevo_departamento.php'>Añadir departamentos</a></li>
                         </ul>
                     </li>
                     <li class='nav-item fs-5'>
@@ -47,7 +47,7 @@
     
 
     // <!-- jefe -->
-    $barra_jefe = "<nav class='navbar navbar-light bg-grey border border-dark bg-blue'>
+    $barra_jefe = "<nav class='navbar navbar-light bg-grey border border-dark bg-blue py-3'>
             <div class='container-fluid d-flex flex-column align-items-center'>
                 
                 <!-- Logo arriba -->
@@ -82,7 +82,7 @@
         
 
     // <!-- normal -->
-        $barra_normal = "<nav class='navbar navbar-light bg-grey border border-dark bg-blue'>
+        $barra_normal = "<nav class='navbar navbar-light bg-grey border border-dark bg-blue py-3'>
             <div class='container-fluid d-flex flex-column align-items-center'>
                 
                 <!-- Logo arriba -->

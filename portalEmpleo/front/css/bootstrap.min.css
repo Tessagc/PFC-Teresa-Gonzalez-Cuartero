@@ -9,7 +9,18 @@
 /* Personalizados */
 .titulo-grande {
     font-size: 4rem;
+    color: #0D6EFD;
 }
+
+.titulo-mediano {
+    font-size: 3rem;
+    color:#0D6EFD
+}
+
+.titulo-pequeño {
+    font-size: 1.5rem;
+}
+
 
 .navbar-nav .nav-link:hover {
     color: blue;
@@ -17,6 +28,10 @@
 
 .bg-grey {
     background-color: lightgrey;
+}
+
+.fondo-web {
+    background-color: #FFF8E7;
 }
 
 /* Dropdown del nav de administradores */
@@ -29,5 +44,5 @@
 }
 
 .img-empleado {
-    width: 30%;
+    width: 70%;
 }

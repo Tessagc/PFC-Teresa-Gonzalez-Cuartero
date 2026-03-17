@@ -8,7 +8,7 @@
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/funciones.js"></script>
 </head>
-<body>
+<body class='fondo-web'>
     <?php
         // archivos necesarios
         try {
@@ -48,11 +48,17 @@ echo "<main>";
 
                 // mensajes de error si los hay
                 if (isset($_GET['error'])) {
-                    
+                    if ($_GET['error'] == 0) {
+                        echo "<p class='text-center '>Incidencia solucionada.</p>";
+                    } else if ($_GET['error'] == 1) {
+                        echo "<p class=' text-danger'>No se pudo conectar a la base de datos.</p>";
+                    } else if ($_GET['error'] == 2) {
+                        echo "<p>No se pudo actualizar el estado de la incidencia.</p>";
+                    }
                 }
 
 
-            echo "<h2>Incidencias del portal</h2>";
+            echo "<h2 class='text-center'>Incidencias del portal</h2>";
             echo "<div class='d-flex container justify-content-between'>";
                 
                 // mostrar las incidencias resueltas y no resueltas
@@ -69,7 +75,13 @@ echo "<main>";
                         echo "<p>Gravedad: ". $no_atendidas['gravedad']."</p>";
                         echo "<p>Fecha reporte: ". $no_atendidas['fecha_creacion']."</p>";
                         echo "<p>Empleado reportante: ". $no_atendidas['reporte_nombre']." ".$no_atendidas['reporte_apellidos']."</p>";
-                        echo "<button type='button' class='btnAtender'>Marcar como atendida</button>";
+                        echo "<button type='button' class='btnOpciones'>Marcar como atendida</button>
+                        <div class='panel-opciones' hidden>
+                            <p>Se cambiara esta incidencia a atendidas, ¿Esta seguro?</p>
+                            <a href='../../back/acciones/marcar_incidencia.php?cod_incidencia=".$no_atendidas['cod_incidencia']."&empleado_gestor=".$id_sesion_usuario."' 
+                            class='btn btn-primary'>Si</a>
+                            <button type='button' class='cancelarOpciones btn btn-danger'>No</button>
+                        </div>";
                     echo "</section>";
                 }
             echo "</div>";  
