@@ -58,6 +58,9 @@ echo "<main>";
             }
                 
 echo "</main>";
+
+        // cerramos la conexion
+        mysqli_close($conexion);
             } else {
                 header("location:ver_empleados.php?error=1");
                 exit();

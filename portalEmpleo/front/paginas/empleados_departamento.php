@@ -50,7 +50,7 @@ echo "</header>";
 
                 // sacar nombre del departamento
                 
-
+echo "<main>";
                 echo "<h2>Empleados del departamento liderado por ".$usuario['nombre']." ".$usuario['apellidos']."</h2>";
 
                 // informacion de todos los empleados
@@ -73,13 +73,9 @@ echo "</header>";
                         }
                     echo "</section>";
             }
-
-
-
-
-echo "<main>";
-
 echo "</main>";
+            // cerramos la conexion
+            mysqli_close($conexion);
         } catch (mysqli_sql_exception $sql) {
             echo "No se pudo acceder a la bbdd: $sql";
         }

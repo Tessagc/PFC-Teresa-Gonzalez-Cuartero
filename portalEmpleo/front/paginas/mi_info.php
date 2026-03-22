@@ -55,7 +55,6 @@
                             echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Gmail empresa: </strong>". $usuario['gmail_empresarial']."</p>";
                             echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Puesto: </strong>". $usuario['puesto']."</p>";
                             echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Estado: </strong>". $usuario['estado']."</p>";
-                            echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Sueldo base: </strong>". $usuario['sueldo_base']."</p>";
                         echo "</div>";
                         echo "<div class='col-md-6 col-6 d-flex flex-column'>";
                         
@@ -70,6 +69,9 @@
                 echo "</div>";
             echo "</section>";
     echo "</main>";
+
+            // cerramos la conexion
+            mysqli_close($conexion);
                 
             } catch (mysqli_sql_exception $sql) {
                 echo "No se pudo acceder a la bbdd: $sql";

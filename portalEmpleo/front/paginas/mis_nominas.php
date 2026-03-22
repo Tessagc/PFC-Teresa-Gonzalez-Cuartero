@@ -39,7 +39,7 @@
                     echo $barra_normal;
                 }
         echo "</header>";
-
+         echo "<main>";
                 // Todas las nominas del usuario
                 echo "<h2>Nominas de ".$usuario['nombre']." ".$usuario['apellidos']."</h2>";
                 $consulta2 = mysqli_query($conexion, "SELECT * FROM nominas WHERE cod_empleado = ".$id_sesion_usuario);
@@ -54,12 +54,9 @@
                     echo "<a href='generar_nomina.php?cod_nomina=".$nomina_usuario['cod_nomina']."' class='cancelarBorrado btn btn-secondary'>Generar PDF</a>";
                     echo "</section>";
                 }
-
-        echo "<main>";
-
-
         echo "</main>";
-        
+        // cerramos la conexion
+        mysqli_close($conexion);
             
         } catch (mysqli_sql_exception $sql) {
             echo "No se pudo acceder a la bbdd: $sql";

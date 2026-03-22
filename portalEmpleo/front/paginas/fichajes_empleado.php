@@ -79,6 +79,9 @@ echo "</header>";
                     header("location:ver_empleados.php?error=1");
                     exit();
                 }
+
+            // cerramos la conexion
+            mysqli_close($conexion);
                 
         } catch (mysqli_sql_exception $sql) {
             echo "No se pudo acceder a la bbdd: $sql";

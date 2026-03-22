@@ -37,6 +37,7 @@
             }
 
             // cerramos conexion y volvemos
+            mysqli_close($conexion);
             header("location:../../front/paginas/nuevo_departamento.php?error=0");
             exit();
         } else {

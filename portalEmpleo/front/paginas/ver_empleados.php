@@ -47,8 +47,16 @@ echo "<main>";
 
                 // mensajes de error si los hay
                 if (isset($_GET['error'])) {
-                    if ($_GET['error'] == 1) {
-                        echo "<p>Seleccione un empleado para ver sus fichajes.</p>";
+                    if ($_GET['error'] == 0) {
+                        echo "<p class=' text-primary'>Empleado borrado correctamente.</p>";
+                    } else if ($_GET['error'] == 1) {
+                        echo "<p class=' text-danger'>Seleccione un empleado para ver sus fichajes.</p>";
+                    } else if ($_GET['error'] == 2) {
+                        echo "<p class=' text-danger'>No se pudo conectar a la base de datos.</p>";
+                    } else if ($_GET['error'] == 3) {
+                        echo "<p class=' text-danger'>No se pudo borrar el empleado.</p>";
+                    } else if ($_GET['error'] == 4) {
+                        echo "<p class=' text-danger'>Seleccione un empleado para borrarlo/actualizarlo.</p>";
                     }
                 }
 
@@ -91,7 +99,7 @@ echo "<main>";
                                                 <button type='button' class='btnOpciones'>Borrar</button>
                                                 <div class='panel-opciones' hidden>
                                                     <p>¿Esta seguro de que quiere borra este empleado?</p>
-                                                    <a href='mis_nominas.php?id=".$empleados['cod_empleado']."' class='btn btn-primary'>Si</a>
+                                                    <a href='../../back/acciones/borrar_empleado.php?id_empleado=".$empleados['cod_empleado']."' class='btn btn-primary'>Si</a>
                                                     <button type='button' class='cancelarOpciones btn btn-danger'>No</button>
                                                 </div>";
                                         echo "</div>"; // fin opciones borra y editar
@@ -105,6 +113,8 @@ echo "<main>";
         echo "</div>"; // fin bloque empleados 
     echo "</section>"; // fin seccion empleados
 echo "</main>";
+        // cerramos conexion
+        mysqli_close($conexion);
                 
         } catch (mysqli_sql_exception $sql) {
             echo "No se pudo acceder a la bbdd: $sql";
