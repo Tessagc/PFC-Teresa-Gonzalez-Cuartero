@@ -48,13 +48,13 @@ echo "<main>";
                 // mensajes de error si los hay
                 if (isset($_GET['error'])) {
                     if ($_GET['error'] == 0) {
-                        echo "<p class=' text-primary'>Departamento borrado correctamente.</p>";
+                        echo "<p class='alert alert-primary text-center fw-bold'>Departamento borrado correctamente.</p>";
                     }  else if ($_GET['error'] == 1) {
-                        echo "<p class=' text-danger'>No se pudo conectar a la base de datos.</p>";
+                        echo "<p class='alert alert-danger text-center fw-bold'>No se pudo conectar a la base de datos.</p>";
                     } else if ($_GET['error'] == 2) {
-                        echo "<p class=' text-danger'>No se pudo borrar el departamento.</p>";
+                        echo "<p class='alert alert-danger text-center fw-bold'>No se pudo borrar el departamento.</p>";
                     } else if ($_GET['error'] == 3) {
-                        echo "<p class=' text-danger'>Seleccione un departamento para borrarlo/actualizarlo.</p>";
+                        echo "<p class='alert alert-danger text-center fw-bold'>Seleccione un departamento para borrarlo/actualizarlo.</p>";
                     }
                 }
 
@@ -62,22 +62,27 @@ echo "<main>";
                 $consulta2 = mysqli_query($conexion, "SELECT departamentos.*, empleados.nombre AS nombre_jefe, empleados.apellidos AS apellidos_jefe
                 FROM departamentos LEFT JOIN empleados ON departamentos.cod_jefe_departamento = empleados.cod_empleado ORDER BY departamentos.nombre ASC");
 
-                echo "<h2>Informacion de los departamentos</h2>";
+                echo "<h2 class='text-center mt-5 mb-4 titulo-mediano fw-bold'>Informacion de los departamentos</h2>";
+                echo "<section class='container-sm mb-5'>";
 
                 while ($departamentos = mysqli_fetch_array($consulta2)) {
-                    echo "<section class='border border-black'>";
-                        echo "<p>Nombre departamento: ". $departamentos['nombre']."</p>";
-                        echo "<p>Descripción: ". $departamentos['descripcion']."</p>";
-                        echo "<p>Jefe departamento: ". $departamentos['nombre_jefe']." ".$departamentos['apellidos_jefe']."</p>
-                        <button type='button' class='btnOpciones'>Borrar</button>
-                        <button type='button' class=''>Editar</button>
-                        <div class='panel-opciones' hidden>
-                            <p>¿Esta seguro de que quiere borra este departamento? Si lo hace, todos los empleados del mismo quedaran sin departamentos asociado</p>
-                            <a href='../../back/acciones/borrar_departamento.php?id_departamento=".$departamentos['cod_departamento']."' class='btn btn-primary'>Si</a>
-                            <button type='button' class='cancelarOpciones btn btn-danger'>No</button>
-                        </div>";
-                    echo "</section>";
+                    echo "<div class='card shadow-sm rounded-4 p-3 mt-2 w-75 mx-auto'>";
+                        echo "<section class='p-3'>";
+                            echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Nombre departamento: </strong>". $departamentos['nombre']."</p>";
+                            echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Descripción: </strong>". $departamentos['descripcion']."</p>";
+                            echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Jefe departamento: </strong>". $departamentos['nombre_jefe']." ".$departamentos['apellidos_jefe']."</p>
+                            <button type='button' class='btnOpciones'>Borrar</button>
+                            <button type='button' class=''>Editar</button>
+                            <div class='panel-opciones' hidden>
+                                <p class='text-aviso fw-bold'>¿Esta seguro de que quiere borra este departamento? Si lo hace, todos los empleados del mismo quedaran sin departamentos asociado</p>
+                                <a href='../../back/acciones/borrar_departamento.php?id_departamento=".$departamentos['cod_departamento']."' class='btn btn-primary'>Si</a>
+                                <button type='button' class='cancelarOpciones btn btn-danger'>No</button>
+                            </div>";
+                        echo "</section>";
+                    echo  "</div>";
+                     
                 }
+    echo "</section>"; // fin seccion departamentos
                
 echo "</main>";
                 

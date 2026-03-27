@@ -49,17 +49,18 @@ echo "<main>";
                 // mensajes de error si los hay
                 if (isset($_GET['error'])) {
                     if ($_GET['error'] == 0) {
-                        echo "<p class='text-center '>Incidencia solucionada.</p>";
+                        echo "<p class='alert alert-primary text-center fw-bold'>Incidencia solucionada.</p>";
                     } else if ($_GET['error'] == 1) {
-                        echo "<p class=' text-danger'>No se pudo conectar a la base de datos.</p>";
+                        echo "<p class='alert alert-danger text-center fw-bold'>No se pudo conectar a la base de datos.</p>";
                     } else if ($_GET['error'] == 2) {
-                        echo "<p>No se pudo actualizar el estado de la incidencia.</p>";
+                        echo "<p class='alert alert-danger text-center fw-bold'>No se pudo actualizar el estado de la incidencia.</p>";
                     }
                 }
 
 
-            echo "<h2 class='text-center'>Incidencias del portal</h2>";
-            echo "<div class='d-flex container justify-content-between'>";
+            echo "<h2 class='text-center mt-5 mb-4 titulo-mediano fw-bold'>Incidencias del portal</h2>";
+            echo "<div class='container'>";
+                echo "<div class='row'>";
                 
                 // mostrar las incidencias resueltas y no resueltas
                 $consulta2 = mysqli_query($conexion, "SELECT incidencias.*, empleados.nombre AS reporte_nombre, empleados.apellidos AS reporte_apellidos
@@ -67,22 +68,24 @@ echo "<main>";
 
             
 
-            echo "<div class='flex-column container-fluid pe-2'>";
-                echo "<h3>No atendidas</h3>";
+            echo "<div class='container-fluid col-12 col-md-6 mb-4'>";
+                echo "<h3 class='text-center'>No atendidas</h3>";
                 while ($no_atendidas = mysqli_fetch_array($consulta2)) {
-                    echo "<section class='border border-black w-75'>";
-                        echo "<p>Descripcion de la incidencia: ". $no_atendidas['descripcion']."</p>";
-                        echo "<p>Gravedad: ". $no_atendidas['gravedad']."</p>";
-                        echo "<p>Fecha reporte: ". $no_atendidas['fecha_creacion']."</p>";
-                        echo "<p>Empleado reportante: ". $no_atendidas['reporte_nombre']." ".$no_atendidas['reporte_apellidos']."</p>";
-                        echo "<button type='button' class='btnOpciones'>Marcar como atendida</button>
-                        <div class='panel-opciones' hidden>
-                            <p>Se cambiara esta incidencia a atendidas, ¿Esta seguro?</p>
-                            <a href='../../back/acciones/marcar_incidencia.php?cod_incidencia=".$no_atendidas['cod_incidencia']."&empleado_gestor=".$id_sesion_usuario."' 
-                            class='btn btn-primary'>Si</a>
-                            <button type='button' class='cancelarOpciones btn btn-danger'>No</button>
-                        </div>";
-                    echo "</section>";
+                    echo "<div class='card mb-3 shadow-sm rounded-4 p-3'>";
+                        echo "<section class='card-body'>";
+                            echo "<p class='card-text'><strong>Descripcion de la incidencia: </strong>". $no_atendidas['descripcion']."</p>";
+                            echo "<p class='card-text'><strong>Gravedad: </strong>". $no_atendidas['gravedad']."</p>";
+                            echo "<p class='card-text'><strong>Fecha reporte: </strong>". $no_atendidas['fecha_creacion']."</p>";
+                            echo "<p class='card-text'><strong>Empleado reportante: </strong>". $no_atendidas['reporte_nombre']." ".$no_atendidas['reporte_apellidos']."</p>";
+                            echo "<button type='button' class='btnOpciones btn-sm btn btn-success'>Marcar como atendida</button>
+                            <div class='panel-opciones' hidden>
+                                <p class='text-aviso fw-bold'>Se cambiara esta incidencia a atendidas, ¿Esta seguro?</p>
+                                <a href='../../back/acciones/marcar_incidencia.php?cod_incidencia=".$no_atendidas['cod_incidencia']."&empleado_gestor=".$id_sesion_usuario."' 
+                                class='btn btn-primary'>Si</a>
+                                <button type='button' class='cancelarOpciones btn btn-danger'>No</button>
+                            </div>";
+                        echo "</section>";
+                    echo "</div>";
                 }
             echo "</div>";  
             
@@ -94,19 +97,22 @@ echo "<main>";
                 WHERE incidencias.atendida = 1");
 
                 
-                echo "<div class='flex-column pe-2 container-fluid'>";
-                    echo "<h3>Atendidas</h3>";
+                echo "<div class='container-fluid col-12 col-md-6 mb-4'>";
+                    echo "<h3 class='text-center'>Atendidas</h3>";
                 while ($atendidas = mysqli_fetch_array($consulta3)) {
-                    echo "<section class='border border-black w-75'>";
-                        echo "<p>Descripcion de la incidencia: ". $atendidas['descripcion']."</p>";
-                        echo "<p>Gravedad: ". $atendidas['gravedad']."</p>";
-                        echo "<p>Fecha reporte: ". $atendidas['fecha_creacion']."</p>";
-                        echo "<p>Fecha resolucion: ". $atendidas['fecha_resolucion']."</p>";
-                        echo "<p>Empleado reportante: ". $atendidas['reporte_nombre']." ".$atendidas['reporte_apellidos']."</p>";
-                        echo "<p>Empleado gestor: ". $atendidas['gestor_nombre']." ".$atendidas['gestor_apellidos']."</p>";
-                    echo "</section>";
+                    echo "<div class='card mb-3 shadow-sm rounded-4 p-3'>";
+                        echo "<section class='card-body'>";
+                            echo "<p class='card-text'><strong>Descripcion de la incidencia: </strong>". $atendidas['descripcion']."</p>";
+                            echo "<p class='card-text'><strong>Gravedad: </strong>". $atendidas['gravedad']."</p>";
+                            echo "<p class='card-text'><strong>Fecha reporte: </strong>". $atendidas['fecha_creacion']."</p>";
+                            echo "<p class='card-text'><strong>Fecha resolucion: </strong>". $atendidas['fecha_resolucion']."</p>";
+                            echo "<p class='card-text'><strong>Empleado reportante: </strong>". $atendidas['reporte_nombre']." ".$atendidas['reporte_apellidos']."</p>";
+                            echo "<p class='card-text'><strong>Empleado gestor: </strong>". $atendidas['gestor_nombre']." ".$atendidas['gestor_apellidos']."</p>";
+                        echo "</section>";
+                    echo "</div>";
                 }
 
+                echo "</div>";  
             echo "</div>";  
         echo "</div>";  
 echo "</main>";

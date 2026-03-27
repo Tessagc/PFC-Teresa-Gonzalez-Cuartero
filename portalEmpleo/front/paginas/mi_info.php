@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Mi informacion</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <script src="../js/bootstrap.min.js"></script>
@@ -46,17 +46,17 @@
             echo "<h2 class='text-center mt-5 mb-4 titulo-mediano fw-bold'>Informacion del empleado ".$usuario['nombre']." ".$usuario['apellidos']."</h2>";
             echo "<section class='container mt-5'>";
                 echo "<div class='container p-4'>";
-                    echo "<div class='row w-75 mx-auto justify-content-center border border-dark rounded-4 shadow-sm bg-light p-3'>";
-                        echo "<div class='col-md-6 col-6 d-flex flex-column justify-content-center'>";
-                            echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Nombre: </strong>". $usuario['nombre']."</p>";
-                            echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Apellidos: </strong>". $usuario['apellidos']."</p>";
-                            echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Telefono: </strong>". $usuario['telefono_personal']."</p>";
-                            echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Gmail personal: </strong>". $usuario['gmail_contacto']."</p>";
-                            echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Gmail empresa: </strong>". $usuario['gmail_empresarial']."</p>";
-                            echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Puesto: </strong>". $usuario['puesto']."</p>";
-                            echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Estado: </strong>". $usuario['estado']."</p>";
+                    echo "<div class='row mx-auto justify-content-center border border-dark rounded-4 bg-light p-3'>";
+                        echo "<div class='col-md-6 col-12 d-flex flex-column justify-content-center'>";
+                            echo "<p class='mb-2 fs-5 text-break'><strong class='titulo-pequeño'>Nombre: </strong>". $usuario['nombre']."</p>";
+                            echo "<p class='mb-2 fs-5 text-break'><strong class='titulo-pequeño'>Apellidos: </strong>". $usuario['apellidos']."</p>";
+                            echo "<p class='mb-2 fs-5 text-break'><strong class='titulo-pequeño'>Telefono: </strong>". $usuario['telefono_personal']."</p>";
+                            echo "<p class='mb-2 fs-5 text-break'><strong class='titulo-pequeño'>Gmail personal: </strong>". $usuario['gmail_contacto']."</p>";
+                            echo "<p class='mb-2 fs-5 text-break'><strong class='titulo-pequeño'>Gmail empresa: </strong>". $usuario['gmail_empresarial']."</p>";
+                            echo "<p class='mb-2 fs-5 text-break'><strong class='titulo-pequeño'>Puesto: </strong>". $usuario['puesto']."</p>";
+                            echo "<p class='mb-2 fs-5 text-break'><strong class='titulo-pequeño'>Estado: </strong>". $usuario['estado']."</p>";
                         echo "</div>";
-                        echo "<div class='col-md-6 col-6 d-flex flex-column'>";
+                        echo "<div class='col-md-6 col-12 d-flex flex-column'>";
                         
                             echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Foto: </p>";
                             if ($usuario['foto'] == "") {

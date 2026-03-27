@@ -16,12 +16,12 @@
             $conexion = mysqli_connect($servidor, $usuario, $contra, $bbdd);
             mysqli_set_charset($conexion, "utf8mb4");
 
-            // preparar datos
+            // preparar datos para la creacion del departamento
             $nombre_departamento = mysqli_real_escape_string($conexion, $_POST['nombre_departamento']);
             $descripcion_departamento = mysqli_real_escape_string($conexion, $_POST['descripcion_departamento']);
             $jefe_departamento = $_POST['jefe_departamento'];
 
-            // prepara consulta en funcion de si se asigno jefe
+            // prepara consulta en funcion de si se asigno jefe al departamento
             if ($jefe_departamento == "") {
                 $consulta = "INSERT INTO departamentos (nombre, descripcion) VALUES ('$nombre_departamento','$descripcion_departamento')";
             } else {

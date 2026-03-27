@@ -15,11 +15,15 @@
             $conexion = mysqli_connect($servidor, $usuario, $contra, $bbdd);
             mysqli_set_charset($conexion, "utf8mb4");
 
-            // marcar la incidencia enviada como completada
+            // marcar la incidencia enviada como completada y poner fecha de completado
             try {
+                // empleado gestor
                 $incidencia_completada = $_GET['cod_incidencia'];
                 $gestor = $_GET['empleado_gestor'];
-                mysqli_query($conexion, "UPDATE incidencias SET atendida = 1, cod_empleado_gestor = $gestor WHERE cod_incidencia=".$incidencia_completada);
+                $fecha_resolucion = date("Y-m-d H:i:s");
+                mysqli_query($conexion, "UPDATE incidencias SET atendida = 1, cod_empleado_gestor = $gestor, fecha_resolucion = '$fecha_resolucion' WHERE cod_incidencia=".$incidencia_completada);
+
+                // fecha resolucion
             } catch (mysqli_sql_exception $sql) {
                 header("location:../../front/paginas/ver_incidencias.php?error=2");
                 exit();

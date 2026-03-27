@@ -51,28 +51,43 @@ echo "</header>";
                 // sacar nombre del departamento
                 
 echo "<main>";
-                echo "<h2>Empleados del departamento liderado por ".$usuario['nombre']." ".$usuario['apellidos']."</h2>";
+                echo "<h2 class='text-center mt-5 mb-4 titulo-mediano fw-bold'>Empleados del departamento liderado por ".$usuario['nombre']." ".$usuario['apellidos']."</h2>";
 
                 // informacion de todos los empleados
                 $consulta2 = mysqli_query($conexion, "SELECT * FROM empleados WHERE cod_departamento = (SELECT cod_departamento FROM
                 departamentos WHERE cod_jefe_departamento = ".$id_sesion_usuario.") ORDER BY nombre ASC");
 
+                echo "<section class='container-fluid mb-5'>";
+        echo "<div class='p-4'>";
+            echo "<div class='row mx-auto justify-content-center'>";
                 while ($empleados = mysqli_fetch_array($consulta2)) {
-                    echo "<section class='border border-black'>";
-                        echo "<p>Nombre: ". $empleados['nombre']."</p>";
-                        echo "<p>Apellidos: ". $empleados['apellidos']."</p>";
-                        echo "<p>Telefono: ". $empleados['telefono_personal']."</p>";
-                        echo "<p>Gmail personal: ". $empleados['gmail_contacto']."</p>";
-                        echo "<p>Gmail empresa: ". $empleados['gmail_empresarial']."</p>";
-                        echo "<p>Puesto: ". $empleados['puesto']."</p>";
-                        echo "<p>Estado: ". $empleados['estado']."</p>";
-                        if ($empleados['foto'] == "") {
-                            echo "<img src='../../media/empleados/default.png' alt='foto generica' class='img-empleado'>";
-                        } else {
-                            echo "<img src='../../media/empleados/".$empleados['foto']."' alt='foto generica' class='img-empleado'>";
-                        }
-                    echo "</section>";
+                    echo "<section class='col-md-6 col-6 col-12 mt-2'>";
+                        echo "<div class='card shadow-sm rounded-4 p-3'>";
+                            echo "<div class='row'>";
+                                echo "<div class='col-md-8 col-12 d-flex flex-column justify-content-center'>";
+                                    echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Nombre: </strong>". $empleados['nombre']."</p>";
+                                    echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Apellidos: </strong>". $empleados['apellidos']."</p>";
+                                    echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Telefono: </strong>". $empleados['telefono_personal']."</p>";
+                                    echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Gmail personal: </strong>". $empleados['gmail_contacto']."</p>";
+                                    echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Gmail empresa: </strong>". $empleados['gmail_empresarial']."</p>";
+                                    echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Puesto: </strong>". $empleados['puesto']."</p>";
+                                    echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Estado: </strong>". $empleados['estado']."</p>";
+                                echo "</div>"; // fin datos
+                                echo "<div class='col-md-4 col-12 d-flex flex-column align-items-center justify-content-center'>";
+                                    echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Foto: </strong></p>";
+                                    if ($empleados['foto'] == "") {
+                                        echo "<img src='../../media/empleados/default.png' alt='foto generica' class='img-empleado  rounded-5'>";
+                                    } else {
+                                        echo "<img src='../../media/empleados/".$empleados['foto']."' alt='foto empleado' class='img-empleado  rounded-5'>";
+                                    }
+                                echo "</div>";// fin bloque con foto y opcioens
+                            echo "</div>"; // fin fila 2
+                        echo "</div>"; // fin card
+                    echo "</section>"; // fin seccion empleado
             }
+            echo "</div>"; // fin fila 1
+        echo "</div>"; // fin bloque empleados 
+    echo "</section>"; // fin seccion empleados
 echo "</main>";
             // cerramos la conexion
             mysqli_close($conexion);

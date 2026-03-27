@@ -48,15 +48,15 @@ echo "<main>";
                 // mensajes de error si los hay
                 if (isset($_GET['error'])) {
                     if ($_GET['error'] == 0) {
-                        echo "<p class=' text-primary'>Empleado borrado correctamente.</p>";
+                        echo "<p class='alert alert-primary text-center fw-bold'>Empleado borrado correctamente.</p>";
                     } else if ($_GET['error'] == 1) {
-                        echo "<p class=' text-danger'>Seleccione un empleado para ver sus fichajes.</p>";
+                        echo "<p class='alert alert-danger text-center fw-bold'>Seleccione un empleado para ver sus fichajes.</p>";
                     } else if ($_GET['error'] == 2) {
-                        echo "<p class=' text-danger'>No se pudo conectar a la base de datos.</p>";
+                        echo "<p class='alert alert-danger text-center fw-bold'>No se pudo conectar a la base de datos.</p>";
                     } else if ($_GET['error'] == 3) {
-                        echo "<p class=' text-danger'>No se pudo borrar el empleado.</p>";
+                        echo "<p class='alert alert-danger text-center fw-bold'>No se pudo borrar el empleado.</p>";
                     } else if ($_GET['error'] == 4) {
-                        echo "<p class=' text-danger'>Seleccione un empleado para borrarlo/actualizarlo.</p>";
+                        echo "<p class='alert alert-danger text-center fw-bold'>Seleccione un empleado para borrarlo/actualizarlo.</p>";
                     }
                 }
 
@@ -66,12 +66,12 @@ echo "<main>";
     echo "<h2 class='text-center mt-5 mb-4 titulo-mediano fw-bold'>Informacion de los empleados</h2>";
     echo "<section class='container-fluid mb-5'>";
         echo "<div class='p-4'>";
-            echo "<div class='row mx-auto justify-content-center border border-dark'>";
+            echo "<div class='row mx-auto justify-content-center'>";
                 while ($empleados = mysqli_fetch_array($consulta2)) {
-                    echo "<section class='col-md-6 col-6 mt-2'>";
+                    echo "<section class=' col-12 col-lg-6 col-md-6 mt-2'>";
                         echo "<div class='card shadow-sm rounded-4 p-3'>";
-                            echo "<div class='row'>";
-                                echo "<div class='col-md-8 col-8 d-flex flex-column justify-content-center'>";
+                            echo "<div class='row p-3'>";
+                                echo "<div class='col-md-12 col-sm-12 col-lg-8 d-flex flex-column justify-content-center'>";
                                     echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Nombre: </strong>". $empleados['nombre']."</p>";
                                     echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Apellidos: </strong>". $empleados['apellidos']."</p>";
                                     echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Telefono: </strong>". $empleados['telefono_personal']."</p>";
@@ -80,7 +80,7 @@ echo "<main>";
                                     echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Puesto: </strong>". $empleados['puesto']."</p>";
                                     echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Estado: </strong>". $empleados['estado']."</p>";
                                 echo "</div>"; // fin datos
-                                echo "<div class='col-md-4 col-4 d-flex flex-column align-items-center justify-content-center'>";
+                                echo "<div class='col-md-12 col-sm-12 col-lg-4 d-flex flex-column align-items-center justify-content-center'>";
                                     echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Foto: </strong></p>";
                                     if ($empleados['foto'] == "") {
                                         echo "<img src='../../media/empleados/default.png' alt='foto generica' class='img-empleado  rounded-5'>";
@@ -89,16 +89,16 @@ echo "<main>";
                                     }
 
                                     // opciones de empleado
-                                    echo "<div class='d-flex'>";
-                                        echo "<div class='mx-3 my-1'>";
-                                                echo "<p><a href='fichajes_empleado.php?cod_empleado=".$empleados['cod_empleado']."'>Fichajes</a></p>";
-                                                echo "<p><a href='nominas_empleado.php?cod_empleado=".$empleados['cod_empleado']."'>Nominas</a></p>
+                                    echo "<div class='d-grid mt-4'>";
+                                        echo "<div class='mx-3 my-1 d-flex'>";
+                                                echo "<p><a href='fichajes_empleado.php?cod_empleado=".$empleados['cod_empleado']."' class='btn btn-primary me-1'>Fichajes</a></p>";
+                                                echo "<p><a href='nominas_empleado.php?cod_empleado=".$empleados['cod_empleado']."' class='btn btn-secondary'>Nominas</a></p>
                                             </div>"; // fin opciones fichajes y nominas
                                         echo "<div class='mx-3 my-1'>
-                                                <p><a href=''>Editar</a></p>
-                                                <button type='button' class='btnOpciones'>Borrar</button>
+                                                <button type='button' class='btn btn-warning'>Editar</button>
+                                                <button type='button' class='btn btn-danger btnOpciones'>Borrar</button>
                                                 <div class='panel-opciones' hidden>
-                                                    <p>¿Esta seguro de que quiere borra este empleado?</p>
+                                                    <p class='text-aviso fw-bold'>¿Esta seguro de que quiere borra este empleado?</p>
                                                     <a href='../../back/acciones/borrar_empleado.php?id_empleado=".$empleados['cod_empleado']."' class='btn btn-primary'>Si</a>
                                                     <button type='button' class='cancelarOpciones btn btn-danger'>No</button>
                                                 </div>";
