@@ -58,7 +58,6 @@ CREATE TABLE Empleados (
     estado ENUM('activo', 'de baja', 'despedido') DEFAULT 'activo',
     rol ENUM('normal', 'jefe', 'admin') DEFAULT 'normal',
     password_hash VARCHAR(255) NOT NULL,
-    sueldo_base DECIMAL(10,2) NOT NULL,
     foto VARCHAR(255),
     cod_departamento INT NULL,
     CONSTRAINT fk_departamento

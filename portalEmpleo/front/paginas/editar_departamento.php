@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang='es'>
+<html lang="es">
 <head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Nuevo departamento</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar departamento</title>
     <link rel='stylesheet' href='../css/bootstrap.min.css'>
     <script src='../js/bootstrap.min.js'></script>
     <script src='../js/funciones.js'></script>
@@ -48,33 +48,32 @@ echo "</header>";
         // sacar empleados con asignacion de jefe
         $consulta2 = mysqli_query($conexion , "SELECT cod_empleado, nombre, apellidos FROM empleados WHERE rol = 'jefe'");
         
-        // mensajes de error si los hay
-        if (isset($_GET['error'])) {
-            if ($_GET['error'] == 0) {
-                echo "<p class=' text-primary'>Departamento creado exitosamente.</p>";
-            } else if ($_GET['error'] == 1) {
-                echo "<p class=' text-danger'>No se pudo conectar a la base de datos.</p>";
-            } else if ($_GET['error'] == 2) {
-                echo "<p class=' text-danger'>No se pudo añadir el departamento.</p>";
-            } 
+        // redirigir si no llega un departamento
+        if (!isset($_GET['id_departamento'])) {
+            header("location:ver_departamentos.php?error=3");
+            exit();
         }
 
-        // formulario nuevo departamento
+        // formulario para actualizar el departamento
+        $id_departamento_editar = $_GET['id_departamento'];
+        $consulta3 = mysqli_query($conexion, "SELECT * FROM departamentos WHERE cod_departamento = ".$id_departamento_editar);
+        $info_actualizar = mysqli_fetch_array($consulta3);
         echo "<main>";
-        echo "<h2 class='text-center mt-5 mb-4 titulo-mediano fw-bold'>Añadir nuevo departamento</h2>
-            <form action='../../back/acciones/crear_departamento.php' method='post' class='container' name='nuevo_departamento' enctype='application/x-www-form-urlencoded'>
+        echo "<h2 class='text-center mt-5 mb-4 titulo-mediano fw-bold'>Editar el departamento</h2>
+            <form action='../../back/acciones/actualizar_departamento.php' method='post' class='container' name='nuevo_departamento' enctype='application/x-www-form-urlencoded'>
+                <input type='hidden' name='cod_departamento' value='$id_departamento_editar'>
                 <div>
                     <label for='nombre_departamento'>Nombre Departamento</label>
-                    <input type='text' name='nombre_departamento' id='nombre_departamento' minlength=8 required>
+                    <input type='text' name='nombre_departamento' id='nombre_departamento' minlength=8 required value='".$info_actualizar['nombre']."'>
                 </div>
                 <div>
                     <label for='descripcion_departamento'>Descripcion Departamento</label>
-                    <input type='text' name='descripcion_departamento' id='descripcion_departamento' minlength=15 required>
+                    <input type='text' name='descripcion_departamento' id='descripcion_departamento' minlength=15 required value='".$info_actualizar['descripcion']."'>
                 </div>
                 <div>
-                    <label for='jefe_departamento'>Empleado jefe (opcional)</label>
+                    <label for='jefe_departamento'>Empleado jefe (SOLO SI SE A CAMBIADO)</label>
                     <select name='jefe_departamento' id='jefe_departamento'> 
-                    <option value='' selected hidden>Escoja al empleado jefe</option>";
+                    <option value='' selected hidden>Escoja al nuevo empleado jefe</option>";
                     while ($jefes = mysqli_fetch_array($consulta2)) {
                         echo "<option value=".$jefes['cod_empleado'].">".$jefes['nombre']." ".$jefes['apellidos']."</option>";
                     }
@@ -90,5 +89,7 @@ echo "</header>";
         echo "</main>";
 
     ?>
+
+   
 </body>
 </html>

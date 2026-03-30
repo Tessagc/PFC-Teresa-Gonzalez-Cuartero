@@ -52,10 +52,12 @@ echo "<main>";
                     }  else if ($_GET['error'] == 1) {
                         echo "<p class='alert alert-danger text-center fw-bold'>No se pudo conectar a la base de datos.</p>";
                     } else if ($_GET['error'] == 2) {
-                        echo "<p class='alert alert-danger text-center fw-bold'>No se pudo borrar el departamento.</p>";
+                        echo "<p class='alert alert-danger text-center fw-bold'>No se pudo borrar/actualizar el departamento.</p>";
                     } else if ($_GET['error'] == 3) {
                         echo "<p class='alert alert-danger text-center fw-bold'>Seleccione un departamento para borrarlo/actualizarlo.</p>";
-                    }
+                    } else if ($_GET['error'] == 4) {
+                        echo "<p class='alert alert-primary text-center fw-bold'>Departamento actualizado correctamente.</p>";
+                    } 
                 }
 
                 // informacion de todos los departamentos y opciones
@@ -71,8 +73,8 @@ echo "<main>";
                             echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Nombre departamento: </strong>". $departamentos['nombre']."</p>";
                             echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Descripción: </strong>". $departamentos['descripcion']."</p>";
                             echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Jefe departamento: </strong>". $departamentos['nombre_jefe']." ".$departamentos['apellidos_jefe']."</p>
-                            <button type='button' class='btnOpciones'>Borrar</button>
-                            <button type='button' class=''>Editar</button>
+                            <button type='button' class='btnOpciones btn btn-danger'>Borrar</button>
+                            <a href='editar_departamento.php?id_departamento=".$departamentos['cod_departamento']."' class='btn btn-warning'>Editar</a>
                             <div class='panel-opciones' hidden>
                                 <p class='text-aviso fw-bold'>¿Esta seguro de que quiere borra este departamento? Si lo hace, todos los empleados del mismo quedaran sin departamentos asociado</p>
                                 <a href='../../back/acciones/borrar_departamento.php?id_departamento=".$departamentos['cod_departamento']."' class='btn btn-primary'>Si</a>
@@ -82,7 +84,7 @@ echo "<main>";
                     echo  "</div>";
                      
                 }
-    echo "</section>"; // fin seccion departamentos
+                echo "</section>"; // fin seccion departamentos
                
 echo "</main>";
                 

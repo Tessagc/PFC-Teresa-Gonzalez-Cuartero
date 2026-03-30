@@ -3,14 +3,14 @@
     try {
         require("../auth/conexion_bbdd.php");
     } catch (Throwable $th) {
-        header("location:../../front/paginas/nuevo_departamento.php?error=1");
+        header("location:../../front/paginas/ver_departamentos.php?error=1");
         exit();
     }
 
 
 
     try {
-        // ¿llego informacion de un departamento nuevo?
+        // ¿hay informacion de un departamento?
         if (isset($_POST['enviar'])) {
             // conectar con la BBDD
             $conexion = mysqli_connect($servidor, $usuario, $contra, $bbdd);
@@ -20,46 +20,51 @@
             $nombre_departamento = mysqli_real_escape_string($conexion, $_POST['nombre_departamento']);
             $descripcion_departamento = mysqli_real_escape_string($conexion, $_POST['descripcion_departamento']);
             $jefe_departamento = $_POST['jefe_departamento'];
+            $id_actualizar = $_POST['cod_departamento'];
 
             // prepara consulta en funcion de si se asigno jefe al departamento
             if ($jefe_departamento == "") {
-                $consulta = "INSERT INTO departamentos (nombre, descripcion) 
-                VALUES ('$nombre_departamento','$descripcion_departamento')";
+                $consulta = "UPDATE departamentos
+                SET nombre = '$nombre_departamento',
+                descripcion = '$descripcion_departamento'
+                WHERE cod_departamento = $id_actualizar";
             } else {
-                $consulta = "INSERT INTO departamentos (nombre, descripcion, cod_jefe_departamento) 
-                VALUES ('$nombre_departamento','$descripcion_departamento', $jefe_departamento)";
-            }
+                $consulta = "UPDATE departamentos
+                SET nombre = '$nombre_departamento',
+                descripcion = '$descripcion_departamento',
+                cod_jefe_departamento = $jefe_departamento
+                WHERE cod_departamento = $id_actualizar";
+                }
 
             // hacer consulta 
             try {
                 mysqli_query($conexion, $consulta);
 
                 // asignamos tambien el departamento al empleado jefe si se asigno
-                $id_nuevo_departamento = mysqli_insert_id($conexion);
 
                 if ($jefe_departamento != "") {
-                $update = "UPDATE empleados 
-                    SET cod_departamento = $id_nuevo_departamento 
-                    WHERE cod_empleado = $jefe_departamento";
+                    $update = "UPDATE empleados 
+                        SET cod_departamento = $id_actualizar 
+                        WHERE cod_empleado = $jefe_departamento";
 
-                    mysqli_query($conexion, $update);
-                }
+                        mysqli_query($conexion, $update);
+                    }
             } catch (mysqli_sql_exception $sql) {
-                header("location:../../front/paginas/nuevo_departamento.php?error=2");
+                header("location:../../front/paginas/ver_departamentos.php?error=2");
                 exit();
             }
 
             // cerramos conexion y volvemos
             mysqli_close($conexion);
-            header("location:../../front/paginas/nuevo_departamento.php?error=0");
+            header("location:../../front/paginas/ver_departamentos.php?error=4");
             exit();
         } else {
-            header("location:../../front/paginas/nuevo_departamento.php");
+            header("location:../../front/paginas/ver_departamentos.php");
             exit();
         }
         
     } catch (mysqli_sql_exception $sql) {
-        header("location:../../front/paginas/nuevo_departamento.php?error=2");
+        header("location:../../front/paginas/ver_departamentos.php?error=2");
         exit();
     }
 ?>

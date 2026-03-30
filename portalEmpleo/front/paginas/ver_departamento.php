@@ -51,20 +51,41 @@ echo "<main>";
 
                 // titulo y consulta varia segun usuario
                 if ($usuario['rol'] == "normal") { // barra de los admin
-                    echo "<h2>Departamento al que pertenece ".$usuario['nombre']." ".$usuario['apellidos']."</h2>";
+                    echo "<h2 class='text-center mt-5 mb-4 titulo-mediano fw-bold'>Departamento al que pertenece ".$usuario['nombre']." ".$usuario['apellidos']."</h2>";
+
+                    $consulta2 = mysqli_query($conexion, "SELECT departamentos.*, jefe.nombre AS nombre_jefe, jefe.apellidos AS apellidos_jefe
+                    FROM empleados 
+                    LEFT JOIN departamentos  ON empleados.cod_departamento = departamentos.cod_departamento
+                    LEFT JOIN empleados jefe ON departamentos.cod_jefe_departamento = jefe.cod_empleado
+                    WHERE empleados.cod_empleado = $id_sesion_usuario");
                 } else if ($usuario['rol'] == "jefe") { // barra de los admin
-                    echo "<h2>Departamento liderado por ".$usuario['nombre']." ".$usuario['apellidos']."</h2>";
+                    echo "<h2 class='text-center mt-5 mb-4 titulo-mediano fw-bold'>Departamento liderado por ".$usuario['nombre']." ".$usuario['apellidos']."</h2>";
+
+                    $consulta2 = mysqli_query($conexion, "SELECT departamentos.*, empleados.nombre AS nombre_jefe, empleados.apellidos AS apellidos_jefe
+                    FROM departamentos LEFT JOIN empleados ON departamentos.cod_jefe_departamento = empleados.cod_empleado 
+                    WHERE cod_jefe_departamento =".$id_sesion_usuario);
                 }
                 
 
                 // departamento del empleado/jefe
-                $consulta2 = mysqli_query($conexion, "SELECT departamentos.*, empleados.nombre AS nombre_jefe, empleados.apellidos AS apellidos_jefe
-                FROM departamentos LEFT JOIN empleados ON departamentos.cod_jefe_departamento = empleados.cod_empleado WHERE cod_jefe_departamento =".$id_sesion_usuario);
-
+               
                 $departamento = mysqli_fetch_array($consulta2);
-                echo "<p>Nombre departamento: ". $departamento['nombre']."</p>";
-                echo "<p>Descripción: ". $departamento['descripcion']."</p>";
-                echo "<p>Jefe departamento: ". $departamento['nombre_jefe']." ".$departamento['apellidos_jefe']."</p>";
+                echo "<section class='container-sm mb-5'>";
+                if ($departamento) {
+                    
+
+                    echo "<div class='card shadow-sm rounded-4 p-3 mt-2 w-75 mx-auto'>";
+                        echo "<section class='p-3'>";
+                        echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Nombre departamento: </strong>". $departamento['nombre']."</p>";
+                        echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Descripción: </strong>". $departamento['descripcion']."</p>";
+                        echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Jefe departamento: 
+                        </strong>". $departamento['nombre_jefe']." ".$departamento['apellidos_jefe']."</p>";
+                
+                echo "</section>"; 
+                } else {
+                    echo "<p>No tienes ningún departamento asignado.</p>";
+                    echo "ID usuario: " . $id_sesion_usuario;
+                }
 
                 
 echo "</main>";

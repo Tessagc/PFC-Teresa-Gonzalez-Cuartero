@@ -67,7 +67,7 @@
                         <a class='nav-link px-2' href='ver_departamento.php'>Departamento</a>
                     </li>
                     <li class='nav-item fs-5'>
-                        <a class='nav-link px-2' href='#'>Reportar incidencia</a>
+                        <a class='nav-link px-2' href='reportar_incidencia.php'>Reportar incidencia</a>
                     </li>
                     <li class='nav-item fs-5'>
                         <a class='nav-link px-2' href='mis_nominas.php'>Mis Nóminas</a>

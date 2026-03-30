@@ -46,51 +46,53 @@
                     // formulario para enviar la incidencia
                     
     echo "<main>";
-        echo "<h2>Reportar incidencia</h2>";
+        
 
         // mensajes de error si los hay
         if (isset($_GET['error'])) {
             if ($_GET['error'] == 0) {
-                echo "<p>Incidencia enviada.</p>";
+                echo "<p class='alert alert-primary text-center fw-bold'>Incidencia enviada.</p>";
             } else if ($_GET['error'] == 1) {
-                echo "<p>No se pudo conectar a la base de datos.</p>";
+                echo "<p class='alert alert-danger text-center fw-bold'>No se pudo conectar a la base de datos.</p>";
             } else if ($_GET['error'] == 2) {
-                echo "<p>No se pudo reportar la incidencia.</p>";
+                echo "<p class='alert alert-danger text-center fw-bold'>No se pudo reportar la incidencia.</p>";
             } else if ($_GET['error'] == 3) {
-                echo "<p>Debe enviar los datos de la incidencia para poder reportarla.</p>";
+                echo "<p class='alert alert-danger text-center fw-bold'>Debe enviar los datos de la incidencia para poder reportarla.</p>";
             }
         }
 
 
-        echo "<form action='../../back/acciones/enviar_incidencia.php' method='post' class='container' name='sesiones' enctype='application/x-www-form-urlencoded'>
+        echo "<div class='container mt-5'>";
+            echo "<h2 class='text-center mt-5 mb-4 titulo-mediano fw-bold'>Reportar incidencia</h2>";
+                echo "<div class='justify-content-center p-4'>";
+                echo "<form action='../../back/acciones/enviar_incidencia.php' class='mx-auto w-75' method='post' class='container' name='sesiones' enctype='application/x-www-form-urlencoded'>
 
-                <input type='hidden' name='cod_reportante' value='$id_sesion_usuario'>
-                <div>
-                    <label for='descripcion_incidencia'>Descripcion de la Incidencia</label>
-                    <input type='text' name='descripcion_incidencia' id='descripcion_incidencia' required>
-                </div>
+                        <input type='hidden' name='cod_reportante' value='$id_sesion_usuario'>
+                        <div class='mb-3'>
+                            <label for='descripcion_incidencia' class='form-label fw-semibold fs-5 text-primary'>Descripcion de la Incidencia</label>
+                            <textarea name='descripcion_incidencia' id='descripcion_incidencia' rows=3 class='form-control' placeholder='Describe el problema...' required></textarea>
+                        </div>
 
-                <div>
-                    <label for='gravedad_incidencia'>Gravedad de la Incidencia</label>
-                    <select name='gravedad_incidencia' id='gravedad_incidencia' required>
-                        <option value='' hidden selected>Selecione la gravedad de la incidencia</option>
-                        <option value='Leve'>Leve</option>
-                        <option value='Moderada'>Moderada</option>
-                        <option value='Grave'>Grave</option>
-                        <option value='Urgente'>Urgente</option>
-                    </select>
-                </div>
-                <div class='mb-3 container'>
-                    <div class='container d-flex justify-content-center'>
-                        <input type='submit' value='Reportar' name='enviar' class='btn'>
-                        <input type='reset' value='Borrar' class='btn'>
-                    </div>
-                </div>
-            </form>";
-
-                    
+                        <div class='mb-3'>
+                            <label for='gravedad_incidencia' class='form-label fw-semibold fs-5 text-primary'>Gravedad de la Incidencia</label>
+                            <select name='gravedad_incidencia' id='gravedad_incidencia' class='form-select' required>
+                                <option value='' hidden selected>Selecione la gravedad de la incidencia</option>
+                                <option value='Leve'>Leve</option>
+                                <option value='Moderada'>Moderada</option>
+                                <option value='Grave'>Grave</option>
+                                <option value='Urgente'>Urgente</option>
+                            </select>
+                        </div>
+                        <div class='mb-3 container'>
+                            <div class='container d-flex justify-content-between'>
+                                <input type='submit' value='Reportar' name='enviar' class='btn btn-secondary'>
+                                <input type='reset' value='Borrar' class='btn btn-primary'>
+                            </div>
+                        </div>
+                    </form>";
+                echo "</div>";
+            echo "</div>";
     echo "</main>";
-                
             } catch (mysqli_sql_exception $sql) {
                 // echo $sql;
                 echo "<p>No se pudo acceder a la bbdd: </p>";
