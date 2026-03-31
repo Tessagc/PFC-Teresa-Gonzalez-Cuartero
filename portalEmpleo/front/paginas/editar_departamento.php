@@ -59,33 +59,37 @@ echo "</header>";
         $consulta3 = mysqli_query($conexion, "SELECT * FROM departamentos WHERE cod_departamento = ".$id_departamento_editar);
         $info_actualizar = mysqli_fetch_array($consulta3);
         echo "<main>";
-        echo "<h2 class='text-center mt-5 mb-4 titulo-mediano fw-bold'>Editar el departamento</h2>
-            <form action='../../back/acciones/actualizar_departamento.php' method='post' class='container' name='nuevo_departamento' enctype='application/x-www-form-urlencoded'>
-                <input type='hidden' name='cod_departamento' value='$id_departamento_editar'>
-                <div>
-                    <label for='nombre_departamento'>Nombre Departamento</label>
-                    <input type='text' name='nombre_departamento' id='nombre_departamento' minlength=8 required value='".$info_actualizar['nombre']."'>
-                </div>
-                <div>
-                    <label for='descripcion_departamento'>Descripcion Departamento</label>
-                    <input type='text' name='descripcion_departamento' id='descripcion_departamento' minlength=15 required value='".$info_actualizar['descripcion']."'>
-                </div>
-                <div>
-                    <label for='jefe_departamento'>Empleado jefe (SOLO SI SE A CAMBIADO)</label>
-                    <select name='jefe_departamento' id='jefe_departamento'> 
-                    <option value='' selected hidden>Escoja al nuevo empleado jefe</option>";
-                    while ($jefes = mysqli_fetch_array($consulta2)) {
-                        echo "<option value=".$jefes['cod_empleado'].">".$jefes['nombre']." ".$jefes['apellidos']."</option>";
-                    }
-                    echo "</select>
-                </div>
-                <div class='mb-3 container'>
-                    <div class='container d-flex justify-content-center'>
-                        <input type='submit' value='Guardar' name='enviar' class='btn btn-primary m-1'>
-                        <input type='reset' value='Borrar' class='btn btn-secondary m-1'>
-                    </div>
-                </div>
-            </form>";
+        echo "<h2 class='text-center mt-5 mb-4 titulo-mediano fw-bold'>Editar el departamento</h2>";
+        echo "<div class='container mt-5'>";
+            echo "<div class='justify-content-center p-4'>";
+                echo "<form action='../../back/acciones/actualizar_departamento.php' method='post' class='mx-auto w-75' name='nuevo_departamento' enctype='application/x-www-form-urlencoded'>
+                        <input type='hidden' name='cod_departamento' value='$id_departamento_editar'>
+                        <div class='mb-3'>
+                            <label for='nombre_departamento' class='form-label fw-semibold fs-5 text-primary'>Nombre Departamento</label>
+                            <input type='text' name='nombre_departamento' id='nombre_departamento' class='form-control' minlength=8 required value='".$info_actualizar['nombre']."'>
+                        </div>
+                        <div class='mb-3'>
+                            <label for='descripcion_departamento' class='form-label fw-semibold fs-5 text-primary'>Descripcion Departamento</label>
+                            <input type='text' name='descripcion_departamento' id='descripcion_departamento' class='form-control' minlength=15 required value='".$info_actualizar['descripcion']."'>
+                        </div>
+                        <div class='mb-3'>
+                            <label for='jefe_departamento' class='form-label fw-semibold fs-5 text-primary'>Empleado jefe (SOLO SI SE HA CAMBIADO)</label>
+                            <select name='jefe_departamento' id='jefe_departamento' class='form-select'> 
+                            <option value='' selected hidden>Escoja al nuevo empleado jefe</option>";
+                            while ($jefes = mysqli_fetch_array($consulta2)) {
+                                echo "<option value=".$jefes['cod_empleado'].">".$jefes['nombre']." ".$jefes['apellidos']."</option>";
+                            }
+                            echo "</select>
+                        </div>
+                        <div class='mb-3 container'>
+                            <div class='container d-flex justify-content-between'>
+                                <input type='submit' value='Guardar' name='enviar' class='btn btn-primary m-1'>
+                                <input type='reset' value='Borrar' class='btn btn-secondary m-1'>
+                            </div>
+                        </div>
+                    </form>";
+                echo "</div>";
+            echo "</div>";
         echo "</main>";
 
     ?>

@@ -20,7 +20,7 @@
                         <a class='nav-link px-2 dropdown-toggle' href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false'>Empleados</a>
                         <ul class='dropdown-menu bg-grey'>
                             <li class='bg-grey'><a class='dropdown-item' href='ver_empleados.php'>Ver empleados</a></li>
-                            <li class='bg-grey'><a class='dropdown-item' href='#'>Añadir empleado</a></li>
+                            <li class='bg-grey'><a class='dropdown-item' href='nuevo_empleado.php'>Añadir empleado</a></li>
                         </ul>
                     </li>
                     <li class='nav-item fs-5 dropdown position-relative col-6 col-md-auto'>
@@ -81,7 +81,7 @@
         </nav>";
         
 
-    // <!-- normal -->
+        // <!-- normal -->
         $barra_normal = "<nav class='navbar navbar-light border border-dark bg-grey py-3'>
             <div class='container-fluid px-2 d-flex flex-column align-items-center'>
                 

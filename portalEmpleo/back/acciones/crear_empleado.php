@@ -12,7 +12,7 @@
             // conectar a bbdd
             $conexion = mysqli_connect($servidor, $usuario, $contra, $bbdd);
 
-            // preparar datos empleado
+            // preparar datos empleado, faltan datos
             $dni = mysqli_real_escape_string($conexion, trim($_POST['dni_nuevo']));
             $nombre = mysqli_real_escape_string($conexion, trim($_POST['nombre_nuevo']));
             $apellidos = mysqli_real_escape_string($conexion, trim($_POST['apellidos_nuevo']));
@@ -27,9 +27,7 @@
             $password_hash = password_hash($password_hash, PASSWORD_DEFAULT);
 
             // hacer la consulta para nuevo empleado
-            mysqli_query($conexion, "INSERT INTO empleados (dni, nombre, apellidos, telefono_personal, gmail_contacto, gmail_empresarial, password_hash)
-            VALUES ('$dni','$nombre','$apellidos','$telefono_personal','$gmail_contacto','$gmail_empresarial','$password_hash')");
-
+           
 
             // preparar la primera nomina, a partir de esta se generaran nuevas mensualmente
 
