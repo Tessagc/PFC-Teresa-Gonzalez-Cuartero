@@ -35,7 +35,7 @@ loguear nuevos usuarios, uno normal, otro jefe y otro admin
 SQL tablas:
 
 CREATE TABLE Departamentos (
-    cod_departamento INT PRIMARY KEY,
+    cod_departamento INT PRIMARY KEY AUTO_INCREMENTET,
     cod_jefe_departamento INT NULL,
     nombre VARCHAR(100) NOT NULL,
     descripcion VARCHAR(255) NOT NULL,
@@ -47,7 +47,7 @@ CREATE TABLE Departamentos (
 );
 
 CREATE TABLE Empleados (
-    cod_empleado INT PRIMARY KEY,
+    cod_empleado INT PRIMARY KEY AUTO_INCREMENTET,
     dni VARCHAR(20) NOT NULL UNIQUE,
     nombre VARCHAR(50) NOT NULL,
     apellidos VARCHAR(80) NOT NULL,
@@ -70,7 +70,7 @@ CREATE TABLE Empleados (
 
 
 CREATE TABLE Nominas (
-    cod_nomina INT PRIMARY KEY,
+    cod_nomina INT PRIMARY KEY AUTO_INCREMENTET,
     cod_empleado INT NOT NULL,
     periodo DATE NOT NULL,
     sueldo_base DECIMAL(10,2) NOT NULL,
@@ -90,7 +90,7 @@ CREATE TABLE Nominas (
 );
 
 CREATE TABLE Fichajes (
-    cod_fichaje INT PRIMARY KEY,
+    cod_fichaje INT PRIMARY KEY AUTO_INCREMENTET,
     cod_empleado INT NOT NULL,
     fecha_hora DATETIME NOT NULL,
     tipo ENUM('entrada','salida') NOT NULL,
@@ -102,7 +102,7 @@ CREATE TABLE Fichajes (
 );
 
 CREATE TABLE Incidencias (
-    cod_incidencia INT PRIMARY KEY,
+    cod_incidencia INT PRIMARY KEY AUTO_INCREMENTET,
     cod_empleado_reportante INT NOT NULL,
     cod_empleado_gestor INT NULL,
     descripcion TEXT NOT NULL,

@@ -50,12 +50,16 @@ echo "</header>";
         // mensajes de error si los hay
         if (isset($_GET['error'])) {
             if ($_GET['error'] == 0) {
-                echo "<p class=' text-primary'>Empleado creado exitosamente.</p>";
+                echo "<p class='text-primary'>Empleado creado exitosamente.</p>";
             } else if ($_GET['error'] == 1) {
-                echo "<p class=' text-danger'>No se pudo conectar a la base de datos.</p>";
+                echo "<p class='text-danger'>No se pudo conectar a la base de datos.</p>";
             } else if ($_GET['error'] == 2) {
-                echo "<p class=' text-danger'>No se pudo añadir el empleado.</p>";
-            } 
+                echo "<p class='text-danger'>No se pudo añadir el empleado.</p>";
+            }  elseif ($_GET['error'] == 3) {
+                echo "<p class='text-danger'>Formato de imagen no valido o el archivo es demasiado grande.</p>";
+            } elseif ($_GET['error'] == 4) {
+                echo "<p class='text-danger'>Imagen ya existente.</p>";
+            }
         }
 
         // obtener lista de departamentos
@@ -107,7 +111,7 @@ echo "</header>";
                         <div class='mb-3 px-5'>
                             <label for='estado' class='form-label fw-semibold fs-5 text-primary'>Estado</label>
                             <select name='estado_nuevo' id='estado' class='form-select' required>
-                                <option value='#' selected hidden>Escoja el estado del empleado</option>
+                                <option value='' selected hidden>Escoja el estado del empleado</option>
                                 <option value='activo'>activo</option>
                                 <option value='de baja'>de baja</option>
                                 <option value='despedido'>despedido</option>
@@ -117,7 +121,7 @@ echo "</header>";
                         <div class='mb-3 px-5'>
                             <label for='rol' class='form-label fw-semibold fs-5 text-primary'>Rol</label>
                             <select name='rol_nuevo' id='rol' class='form-select' required>
-                                <option value='#' selected hidden>Escoja el rol del empleado</option>
+                                <option value='' selected hidden>Escoja el rol del empleado</option>
                                 <option value='normal'>normal</option>
                                 <option value='jefe'>jefe</option>
                                 <option value='admin'>admin</option>
@@ -137,9 +141,9 @@ echo "</header>";
                         <div class='mb-3 px-5'>
                             <label for='departamento' class='form-label fw-semibold fs-5 text-primary'>Departamento (opcional)</label>
                             <select name='departamento_nuevo' id='departamento' class='form-select'>
-                                <option value='#' selected hidden>Escoja el departamento del empleado si ya esta asignado</option>";
+                                <option value='' selected hidden>Escoja el departamento del empleado si ya esta asignado</option>";
                                 while ($departamento = mysqli_fetch_array($consulta2)) {
-                                    echo "<option value='".$departamento['cod_empleado']."'>".$departamento['nombre']."</option>";
+                                    echo "<option value='".$departamento['cod_departamento']."'>".$departamento['nombre']."</option>";
                                 }
                                 
                             echo "</select>
@@ -154,7 +158,7 @@ echo "</header>";
 
                         <div class='mb-3 px-5'>
                             <label for='sueldo_base' class='form-label fw-semibold fs-5 text-primary'>Sueldo Base:</label>
-                            <input type='number' step='0.01' id='sueldo_base' name='sueldo_base' class='form-control' required>
+                            <input type='number' step='0.0001' id='sueldo_base' name='sueldo_base' class='form-control' required>
                         </div>
 
                         <div class='mb-3 px-5'>
@@ -163,22 +167,22 @@ echo "</header>";
                         </div>
 
                         <div class='mb-3 px-5'>
-                            <label for='cont_comun' class='form-label fw-semibold fs-5 text-primary'>Contingencias Comunes:</label>
-                            <input type='number' step='0.01' id='cont_comun' name='cont_comun' class='form-control' required>
+                            <label for='cont_comun' class='form-label fw-semibold fs-5 text-primary'>Contingencias Comunes (porcentaje):</label>
+                            <input type='number' step='0.00001' id='cont_comun' name='cont_comun' class='form-control' required>
                         </div>
 
                         <div class='mb-3 px-5'>
-                            <label for='formacion' class='form-label fw-semibold fs-5 text-primary'>Formación:</label>
-                            <input type='number' step='0.01' id='formacion' name='formacion' class='form-control' required>
+                            <label for='formacion' class='form-label fw-semibold fs-5 text-primary'>Formación (porcentaje):</label>
+                            <input type='number' step='0.00001' id='formacion' name='formacion' class='form-control' required>
                         </div>
 
                         <div class='mb-3 px-5'>
-                            <label for='desempleo' class='form-label fw-semibold fs-5 text-primary'>Desempleo:</label>
-                            <input type='number' step='0.01' id='desempleo' name='desempleo' class='form-control' required>
+                            <label for='desempleo' class='form-label fw-semibold fs-5 text-primary'>Desempleo (porcentaje):</label>
+                            <input type='number' step='0.00001' id='desempleo' name='desempleo' class='form-control' required>
                         </div>
 
                         <div class='mb-3 px-5'>
-                            <label for='irpf' class='form-label fw-semibold fs-5 text-primary'>IRPF:</label>
+                            <label for='irpf' class='form-label fw-semibold fs-5 text-primary'>IRPF (porcentaje):</label>
                             <input type='number' step='0.01' id='irpf' name='irpf' class='form-control' required>
                         </div>
                     </fieldset>
