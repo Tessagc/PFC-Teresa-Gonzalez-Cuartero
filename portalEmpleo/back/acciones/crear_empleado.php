@@ -11,6 +11,7 @@
         if (isset($_POST['enviar'])) {
             // conectar a bbdd
             $conexion = mysqli_connect($servidor, $usuario, $contra, $bbdd);
+            mysqli_set_charset($conexion, "utf8mb4");
 
             // preparar datos empleado, faltan datos
             $dni = mysqli_real_escape_string($conexion, trim($_POST['dni_nuevo']));

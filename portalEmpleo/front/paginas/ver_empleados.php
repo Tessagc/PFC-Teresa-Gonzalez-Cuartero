@@ -48,15 +48,19 @@ echo "<main>";
                 // mensajes de error si los hay
                 if (isset($_GET['error'])) {
                     if ($_GET['error'] == 0) {
-                        echo "<p class='alert alert-primary text-center fw-bold'>Empleado borrado correctamente.</p>";
+                        echo "<p class='alert alert-primary text-center fw-bold'>Empleado borrado/actualizado correctamente.</p>";
                     } else if ($_GET['error'] == 1) {
                         echo "<p class='alert alert-danger text-center fw-bold'>Seleccione un empleado para ver sus fichajes.</p>";
                     } else if ($_GET['error'] == 2) {
                         echo "<p class='alert alert-danger text-center fw-bold'>No se pudo conectar a la base de datos.</p>";
                     } else if ($_GET['error'] == 3) {
-                        echo "<p class='alert alert-danger text-center fw-bold'>No se pudo borrar el empleado.</p>";
+                        echo "<p class='alert alert-danger text-center fw-bold'>No se pudo borrar/actualizar el empleado.</p>";
                     } else if ($_GET['error'] == 4) {
                         echo "<p class='alert alert-danger text-center fw-bold'>Seleccione un empleado para borrarlo/actualizarlo.</p>";
+                    } else if ($_GET['error'] == 5) {
+                        echo "<p class='alert alert-danger text-center fw-bold'>Formato o tamaño de foto no valido.</p>";
+                    } else if ($_GET['error'] == 6) {
+                        echo "<p class='alert alert-danger text-center fw-bold'>Foto ya existente.</p>";
                     }
                 }
 
@@ -93,9 +97,11 @@ echo "<main>";
                                         echo "<div class='mx-3 my-1 d-flex'>";
                                                 echo "<p><a href='fichajes_empleado.php?cod_empleado=".$empleados['cod_empleado']."' class='btn btn-primary me-1'>Fichajes</a></p>";
                                                 echo "<p><a href='nominas_empleado.php?cod_empleado=".$empleados['cod_empleado']."' class='btn btn-secondary'>Nominas</a></p>
+                                                
                                             </div>"; // fin opciones fichajes y nominas
                                         echo "<div class='mx-3 my-1'>
-                                                <button type='button' class='btn btn-warning'>Editar</button>
+                                        <p><a href='?cod_empleado=".$empleados['cod_empleado']."' class='btn btn-info'>Actualizar nominas</a></p>
+                                                <p><a href='editar_empleado.php?cod_empleado=".$empleados['cod_empleado']."' class='btn btn-warning'>Editar</a></p>
                                                 <button type='button' class='btn btn-danger btnOpciones'>Borrar</button>
                                                 <div class='panel-opciones' hidden>
                                                     <p class='text-aviso fw-bold'>¿Esta seguro de que quiere borra este empleado?</p>

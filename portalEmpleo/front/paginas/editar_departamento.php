@@ -59,7 +59,7 @@ echo "</header>";
         $consulta3 = mysqli_query($conexion, "SELECT * FROM departamentos WHERE cod_departamento = ".$id_departamento_editar);
         $info_actualizar = mysqli_fetch_array($consulta3);
         echo "<main>";
-        echo "<h2 class='text-center mt-5 mb-4 titulo-mediano fw-bold'>Editar el departamento</h2>";
+        echo "<h2 class='text-center mt-5 mb-4 titulo-mediano fw-bold'>Editar el departamento ".$info_actualizar['nombre']."</h2>";
         echo "<div class='container mt-5'>";
             echo "<div class='justify-content-center p-4'>";
                 echo "<form action='../../back/acciones/actualizar_departamento.php' method='post' class='mx-auto w-75' name='nuevo_departamento' enctype='application/x-www-form-urlencoded'>

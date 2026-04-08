@@ -47,15 +47,31 @@ echo "</header>";
 
                 $consulta3 = mysqli_query($conexion, "SELECT * FROM nominas WHERE cod_empleado=".$_GET['cod_empleado']);
 echo "<main>";
-            echo "<h2>Ultimas nominas de ".$empleado['nombre']." ".$empleado['apellidos']."</h2>";
-            while ($nominas = mysqli_fetch_array($consulta3)) {
-                echo "<section class='border border-black'>";
-                    echo "<p>Periodo pago: ".$nominas['periodo']." Sueldo bruto: ".$nominas['sueldo_base']."</p>";
-                    echo "<p>Complementos: ".$nominas['complementos']." Contingencia comun: ".$nominas['cont_comun']."</p>";
-                    echo "<p>Formación: ".$nominas['formacion']." Desempleo: ".$nominas['desempleo']."</p>";
-                    echo "<p>IRPF: ".$nominas['irpf']." Sueldo neto: ".$nominas['total']."</p>";
-                echo "</section>";
-            }
+            echo "<h2 class='text-center mt-5 mb-4 titulo-mediano fw-bold'>Ultimas nominas de ".$empleado['nombre']." ".$empleado['apellidos']."</h2>";
+            echo "<div class='row justify-content-center container mx-auto'>";
+                    while ($nominas_empleado = mysqli_fetch_array($consulta3)) {
+                        echo "<div class='col-md-6 col-sm-12 mb-4'>";
+                            echo "<section class='border rounded p-3 mb-4 shadow-sm bg-light row'>";
+                                echo "<div class='col-md-6 col-sm-12 mb-4'>";
+                                    echo "<p class='mb-2'><strong>Periodo:</strong> ".$nominas_empleado['periodo']." €</p>";
+                                    echo "<p class='mb-2'><strong>Sueldo bruto:</strong> ".$nominas_empleado['sueldo_base']." €</p>";
+                                    echo "<p class='mb-2'><strong>Complementos:</strong> ".$nominas_empleado['complementos']." €</p>";
+                                echo "</div>";
+
+                                echo "<div class='col-md-6 col-sm-12 mb-4'>";
+                                    echo "<p class='mb-2'><strong>Contingencia común:</strong> ".$nominas_empleado['cont_comun']." €</p>";
+                                    echo "<p class='mb-2'><strong>Formación:</strong> ".$nominas_empleado['formacion']." €</p>";
+                                    echo "<p class='mb-2'><strong>Desempleo:</strong> ".$nominas_empleado['desempleo']." €</p>";
+                                    echo "<p class='mb-2'><strong>IRPF:</strong> ".$nominas_empleado['irpf']." €</p>";
+                                echo "</div>";
+                                echo "<hr>";
+                                echo "<p class='mb-3'><strong>Sueldo neto: </strong>".$nominas_empleado['total']." €</p>";
+
+                                echo "<a href='generar_nomina.php?cod_nomina=".$nominas_empleado['cod_nomina']."' class='btn btn-sm btn-secondary w-25'>Generar PDF</a>";
+                            echo "</section>";
+                        echo "</div>";
+                    }
+                echo "</div>";
                 
 echo "</main>";
 
