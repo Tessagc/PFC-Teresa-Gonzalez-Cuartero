@@ -12,7 +12,7 @@
 
 
     <?php
-    // archivos necesarios
+        // archivos necesarios
         try {
             require_once("../../back/auth/sesion.php");
             require("plantillas/barras_nav.php");
@@ -152,7 +152,7 @@ echo "</header>";
                     <fieldset class='form-group border border-3 rounded-5 border-primary mb-3'>
                         <legend class='text-center fw-bold text-primary fs-4'>Datos de la nomina mensual</legend>
                         <div class='mb-3 px-5'>
-                            <label for='periodo' class='form-label fw-semibold fs-5 text-primary'>Periodo:</label>
+                            <label for='periodo' class='form-label fw-semibold fs-5 text-primary'>Periodo primera nomina:</label>
                             <input type='date' id='periodo' name='periodo' class='form-control' required>
                         </div>
 

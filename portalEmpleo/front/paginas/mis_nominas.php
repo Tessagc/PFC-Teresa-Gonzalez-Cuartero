@@ -50,7 +50,7 @@
                         echo "<div class='col-md-6 col-sm-12 mb-4'>";
                             echo "<section class='border rounded p-3 mb-4 shadow-sm bg-light row'>";
                                 echo "<div class='col-md-6 col-sm-12 mb-4'>";
-                                    echo "<p class='mb-2'><strong>Periodo:</strong> ".$nomina_usuario['periodo']." €</p>";
+                                    echo "<p class='mb-2'><strong>Periodo:</strong> ".$nomina_usuario['periodo']." </p>";
                                     echo "<p class='mb-2'><strong>Sueldo bruto:</strong> ".$nomina_usuario['sueldo_base']." €</p>";
                                     echo "<p class='mb-2'><strong>Complementos:</strong> ".$nomina_usuario['complementos']." €</p>";
                                 echo "</div>";

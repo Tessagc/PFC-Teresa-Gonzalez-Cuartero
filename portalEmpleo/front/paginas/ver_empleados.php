@@ -56,11 +56,15 @@ echo "<main>";
                     } else if ($_GET['error'] == 3) {
                         echo "<p class='alert alert-danger text-center fw-bold'>No se pudo borrar/actualizar el empleado.</p>";
                     } else if ($_GET['error'] == 4) {
-                        echo "<p class='alert alert-danger text-center fw-bold'>Seleccione un empleado para borrarlo/actualizarlo.</p>";
+                        echo "<p class='alert alert-danger text-center fw-bold'>Seleccione un empleado para borrarlo/actualizarlo o modificar su nomina.</p>";
                     } else if ($_GET['error'] == 5) {
                         echo "<p class='alert alert-danger text-center fw-bold'>Formato o tamaño de foto no valido.</p>";
                     } else if ($_GET['error'] == 6) {
                         echo "<p class='alert alert-danger text-center fw-bold'>Foto ya existente.</p>";
+                    } else if ($_GET['error'] == 7) {
+                        echo "<p class='alert alert-danger text-center fw-bold'>No se pudo actualizar la nomina.</p>";
+                    } else if ($_GET['error'] == 8) {
+                        echo "<p class='alert alert-primary text-center fw-bold'>Nomina actualizada.</p>";
                     }
                 }
 
@@ -100,7 +104,7 @@ echo "<main>";
                                                 
                                             </div>"; // fin opciones fichajes y nominas
                                         echo "<div class='mx-3 my-1'>
-                                        <p><a href='?cod_empleado=".$empleados['cod_empleado']."' class='btn btn-info'>Actualizar nominas</a></p>
+                                        <p><a href='actualizar_nomina.php?cod_empleado=".$empleados['cod_empleado']."' class='btn btn-info'>Actualizar nominas</a></p>
                                                 <p><a href='editar_empleado.php?cod_empleado=".$empleados['cod_empleado']."' class='btn btn-warning'>Editar</a></p>
                                                 <button type='button' class='btn btn-danger btnOpciones'>Borrar</button>
                                                 <div class='panel-opciones' hidden>

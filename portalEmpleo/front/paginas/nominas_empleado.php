@@ -53,7 +53,7 @@ echo "<main>";
                         echo "<div class='col-md-6 col-sm-12 mb-4'>";
                             echo "<section class='border rounded p-3 mb-4 shadow-sm bg-light row'>";
                                 echo "<div class='col-md-6 col-sm-12 mb-4'>";
-                                    echo "<p class='mb-2'><strong>Periodo:</strong> ".$nominas_empleado['periodo']." €</p>";
+                                    echo "<p class='mb-2'><strong>Periodo:</strong> ".$nominas_empleado['periodo']." </p>";
                                     echo "<p class='mb-2'><strong>Sueldo bruto:</strong> ".$nominas_empleado['sueldo_base']." €</p>";
                                     echo "<p class='mb-2'><strong>Complementos:</strong> ".$nominas_empleado['complementos']." €</p>";
                                 echo "</div>";
