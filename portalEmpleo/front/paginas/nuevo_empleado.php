@@ -50,15 +50,15 @@ echo "</header>";
         // mensajes de error si los hay
         if (isset($_GET['error'])) {
             if ($_GET['error'] == 0) {
-                echo "<p class='text-primary'>Empleado creado exitosamente.</p>";
+                echo "<p class='alert alert-primary text-center fw-bold'>Empleado creado exitosamente.</p>";
             } else if ($_GET['error'] == 1) {
-                echo "<p class='text-danger'>No se pudo conectar a la base de datos.</p>";
+                echo "<p class='alert alert-danger text-center fw-bold'>No se pudo conectar a la base de datos.</p>";
             } else if ($_GET['error'] == 2) {
-                echo "<p class='text-danger'>No se pudo añadir el empleado.</p>";
+                echo "<p class='alert alert-danger text-center fw-bold'>No se pudo añadir el empleado.</p>";
             }  elseif ($_GET['error'] == 3) {
-                echo "<p class='text-danger'>Formato de imagen no valido o el archivo es demasiado grande.</p>";
+                echo "<p class='alert alert-danger text-center fw-bold'>Formato de imagen no valido o el archivo es demasiado grande.</p>";
             } elseif ($_GET['error'] == 4) {
-                echo "<p class='text-danger'>Imagen ya existente.</p>";
+                echo "<p class='alert alert-danger text-center fw-bold'>Imagen ya existente.</p>";
             }
         }
 
@@ -129,7 +129,8 @@ echo "</header>";
                         </div>
                         
                         <div class='mb-3 px-5'>
-                            <label for='password_hash' class='form-label fw-semibold fs-5 text-primary'>Contraseña:</label>
+                            <label for='password_hash' class='form-label fw-semibold fs-5 text-primary'>Contraseña: 
+                                <small id='password_error' class='avisos text-danger text-center fw-bold'></small></label>
                             <input type='password' id='password_hash' minlength=4 name='password_hash_nuevo' class='form-control' required>
                         </div>
 

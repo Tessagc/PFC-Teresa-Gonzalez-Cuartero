@@ -120,7 +120,8 @@ echo "</header>";
                         </div>
                         
                         <div class='mb-3 px-5'>
-                            <label for='password_hash' class='form-label fw-semibold fs-5 text-primary'>Contraseña:</label>
+                            <label for='password_hash' class='form-label fw-semibold fs-5 text-primary'>Contraseña: 
+                            <small id='password_error' class='avisos text-danger text-center fw-bold'></small></label>
                             <input type='password' id='password_hash' name='password_hash_nuevo' minlength=4 class='form-control' required>
                         </div>
 

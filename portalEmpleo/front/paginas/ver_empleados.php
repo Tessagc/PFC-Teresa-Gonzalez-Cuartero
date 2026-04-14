@@ -87,6 +87,7 @@ echo "<main>";
                                     echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Gmail empresa: </strong>". $empleados['gmail_empresarial']."</p>";
                                     echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Puesto: </strong>". $empleados['puesto']."</p>";
                                     echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Estado: </strong>". $empleados['estado']."</p>";
+                                    echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Rol: </strong>". $empleados['rol']."</p>";
                                 echo "</div>"; // fin datos
                                 echo "<div class='col-md-12 col-sm-12 col-lg-4 d-flex flex-column align-items-center justify-content-center'>";
                                     echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Foto: </strong></p>";

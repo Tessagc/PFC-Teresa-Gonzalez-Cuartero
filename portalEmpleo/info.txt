@@ -1,9 +1,9 @@
 Estructura navegadores del header
 
 navegador admin:
-Mi info - empleados - departamentos - incidencias - nominas - cerrar sesion
+Mi info - empleados (ver/añadir) - departamentos(ver/añadir) - incidencias - nominas - cerrar sesion
 editar/crear/borrar departamentos/empleados
-de empleados, ver sus fichajes y sus nominas
+de empleados, ver sus fichajes y sus nominas, y actualizar las proximas nominas
 ver su info, los empleados y los departamentos
 atender incidencias
 ver/generar pdf nomina
@@ -22,15 +22,11 @@ ver/generar pdf nomina
 
 
 Notas.
-index será el archivo de login
-tras loguearse, te reenvía al archivo con tu información
-al revisar los empleados, se tendrá enlace a un archivo con todos sus datos, no editable desde este.
-El admin, en la visualización de los empleados y departamentos, podrá ver, editar y borrar cada uno.
-Las incidencias y fichajes NO SE BORRSN, las incidencias se marcan como gestionadas o no gestionadas
-no se podrá crear usuario salvo que seas un admin
+Index es el archivo de login
+En js el archivo bootstrap.min.js NO SE MODIFICA
+Si se necesita añadir clase a bootstrap, hacerlo al final del archivo css
 
-a hacer hoy:
-loguear nuevos usuarios, uno normal, otro jefe y otro admin
+
 
 SQL tablas:
 
@@ -142,27 +138,6 @@ desempleo = (total bruto + complementos) * 0.0155
 IRPF = total bruto * % dependiente
 total neto = sueldo bruto - cont comun - formación - desempleo - IRPF
 
-ejemplo en SQL
-SELECT 
-    cod_nomina,
-    cod_empleado,
-    periodo,
-    sueldo_base,
-    complementos,
-    
-    -- Cálculos
-    (sueldo_base + complementos) * 0.047 AS cot_comun,
-    (sueldo_base + complementos) * 0.0155 AS desempleo,
-    (sueldo_base + complementos) * 0.001 AS formacion,
-    (sueldo_base + complementos) * 0.15 AS irpf,
-    
-    -- Total neto
-    (sueldo_base + complementos)
-    - ((sueldo_base + complementos) * 0.047)
-    - ((sueldo_base + complementos) * 0.0155)
-    - ((sueldo_base + complementos) * 0.001)
-    - ((sueldo_base + complementos) * 0.15) AS total
-FROM Nominas;
 
 
 
