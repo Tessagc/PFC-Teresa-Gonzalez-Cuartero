@@ -48,8 +48,6 @@
                 echo "<div class='container p-4'>";
                     echo "<div class='row mx-auto justify-content-center border border-dark rounded-4 bg-light p-3'>";
                         echo "<div class='col-md-6 col-12 d-flex flex-column justify-content-center'>";
-                            echo "<p class='mb-2 fs-5 text-break'><strong class='titulo-pequeño'>Nombre: </strong>". $usuario['nombre']."</p>";
-                            echo "<p class='mb-2 fs-5 text-break'><strong class='titulo-pequeño'>Apellidos: </strong>". $usuario['apellidos']."</p>";
                             echo "<p class='mb-2 fs-5 text-break'><strong class='titulo-pequeño'>Telefono: </strong>". $usuario['telefono_personal']."</p>";
                             echo "<p class='mb-2 fs-5 text-break'><strong class='titulo-pequeño'>Gmail personal: </strong>". $usuario['gmail_contacto']."</p>";
                             echo "<p class='mb-2 fs-5 text-break'><strong class='titulo-pequeño'>Gmail empresa: </strong>". $usuario['gmail_empresarial']."</p>";
@@ -60,7 +58,7 @@
                         
                             echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Foto: </p>";
                             if ($usuario['foto'] == "") {
-                                echo "<img src='../../media/empleados/default.png' alt='foto generica'  class='img-empleado  rounded-circle shadow border border-3 border-primary p-1'>";
+                                echo "<img src='../../media/empleados/default.png' alt='foto generica'  class='img-empleado rounded-circle shadow border border-3 border-primary p-1'>";
                             } else {
                                 echo "<img src='../../media/empleados/".$usuario['foto']."' alt='foto empleado' class='img-empleado rounded-circle shadow border border-3 border-primary p-1'>";
                             }

@@ -74,55 +74,62 @@ echo "<main>";
     echo "<h2 class='text-center mt-5 mb-4 titulo-mediano fw-bold'>Informacion de los empleados</h2>";
     echo "<section class='container-fluid mb-5'>";
         echo "<div class='p-4'>";
-            echo "<div class='row mx-auto justify-content-center'>";
+            echo "<div class='row mx-auto justify-content-right'>";
                 while ($empleados = mysqli_fetch_array($consulta2)) {
                     echo "<section class=' col-12 col-lg-6 col-md-6 mt-2'>";
                         echo "<div class='card shadow-sm rounded-4 p-3'>";
-                            echo "<div class='row p-3'>";
-                                echo "<div class='col-md-12 col-sm-12 col-lg-8 d-flex flex-column justify-content-center'>";
-                                    echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Nombre: </strong>". $empleados['nombre']."</p>";
-                                    echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Apellidos: </strong>". $empleados['apellidos']."</p>";
-                                    echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Telefono: </strong>". $empleados['telefono_personal']."</p>";
-                                    echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Gmail personal: </strong>". $empleados['gmail_contacto']."</p>";
-                                    echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Gmail empresa: </strong>". $empleados['gmail_empresarial']."</p>";
-                                    echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Puesto: </strong>". $empleados['puesto']."</p>";
-                                    echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Estado: </strong>". $empleados['estado']."</p>";
-                                    echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Rol: </strong>". $empleados['rol']."</p>";
-                                echo "</div>"; // fin datos
-                                echo "<div class='col-md-12 col-sm-12 col-lg-4 d-flex flex-column align-items-center justify-content-center'>";
-                                    echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Foto: </strong></p>";
-                                    if ($empleados['foto'] == "") {
-                                        echo "<img src='../../media/empleados/default.png' alt='foto generica' class='img-empleado  rounded-5'>";
-                                    } else {
-                                        echo "<img src='../../media/empleados/".$empleados['foto']."' alt='foto empleado' class='img-empleado  rounded-5'>";
-                                    }
+                            echo "<div class='card-header bg-white border-0 p-3'>"; // header card
+                                        echo "<p class='fw-bold fs-5 d-flex justify-content-between align-items-center m-0'>";
+                                            echo $empleados['nombre']." ".$empleados['apellidos'];
+                                         echo "<a class='text-dark text-decoration-none fw-light' data-bs-toggle='collapse' href='#emp".$empleados['cod_empleado']."'>";
+                                            echo "Ver mas";
+                                        echo "</a></p>";
+                                echo "</div>"; // fin header card
+                                echo "<div id='emp".$empleados['cod_empleado']."' class='collapse'>"; // desplegable
+                                    echo "<div class='row p-3'>";
+                                        echo "<div class='col-md-12 col-sm-12 col-lg-8 d-flex flex-column justify-content-center'>";
+                                            echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Telefono: </strong>". $empleados['telefono_personal']."</p>";
+                                            echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Gmail personal: </strong>". $empleados['gmail_contacto']."</p>";
+                                            echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Gmail empresa: </strong>". $empleados['gmail_empresarial']."</p>";
+                                            echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Puesto: </strong>". $empleados['puesto']."</p>";
+                                            echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Estado: </strong>". $empleados['estado']."</p>";
+                                            echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Rol: </strong>". $empleados['rol']."</p>";
+                                        echo "</div>"; // fin datos
+                                        echo "<div class='col-md-12 col-sm-12 col-lg-4 d-flex flex-column align-items-center justify-content-center'>";
+                                            echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Foto: </strong></p>";
+                                            if ($empleados['foto'] == "") {
+                                                echo "<img src='../../media/empleados/default.png' alt='foto generica' class='img-empleado rounded-circle shadow border border-3 border-primary'>";
+                                            } else {
+                                                echo "<img src='../../media/empleados/".$empleados['foto']."' alt='foto empleado' class='img-empleado rounded rounded-5 shadow border border-3 border-primary'>";
+                                            }
 
-                                    // opciones de empleado
-                                    echo "<div class='d-grid mt-4'>";
-                                        echo "<div class='mx-3 my-1 d-flex'>";
-                                                echo "<p><a href='fichajes_empleado.php?cod_empleado=".$empleados['cod_empleado']."' class='btn btn-primary me-1'>Fichajes</a></p>";
-                                                echo "<p><a href='nominas_empleado.php?cod_empleado=".$empleados['cod_empleado']."' class='btn btn-secondary'>Nominas</a></p>
-                                                
-                                            </div>"; // fin opciones fichajes y nominas
-                                        echo "<div class='mx-3 my-1'>
-                                        <p><a href='actualizar_nomina.php?cod_empleado=".$empleados['cod_empleado']."' class='btn btn-info'>Actualizar nominas</a></p>
-                                                <p><a href='editar_empleado.php?cod_empleado=".$empleados['cod_empleado']."' class='btn btn-warning'>Editar</a></p>
-                                                <button type='button' class='btn btn-danger btnOpciones'>Borrar</button>
-                                                <div class='panel-opciones' hidden>
-                                                    <p class='text-aviso fw-bold'>¿Esta seguro de que quiere borra este empleado?</p>
-                                                    <a href='../../back/acciones/borrar_empleado.php?id_empleado=".$empleados['cod_empleado']."' class='btn btn-primary'>Si</a>
-                                                    <button type='button' class='cancelarOpciones btn btn-danger'>No</button>
-                                                </div>";
-                                        echo "</div>"; // fin opciones borra y editar
-                                    echo "</div>"; // fin bloque opciones
-                                echo "</div>";// fin bloque con foto y opcioens
-                            echo "</div>"; // fin fila 2
+                                            // opciones de empleado
+                                            echo "<div class='d-grid mt-4'>";
+                                                echo "<div class='mx-3 my-1 d-flex'>";
+                                                        echo "<p><a href='fichajes_empleado.php?cod_empleado=".$empleados['cod_empleado']."' class='btn btn-primary me-1'>Fichajes</a></p>";
+                                                        echo "<p><a href='nominas_empleado.php?cod_empleado=".$empleados['cod_empleado']."' class='btn btn-secondary'>Nominas</a></p>
+                                                        
+                                                    </div>"; // fin opciones fichajes y nominas
+                                                echo "<div class='mx-3 my-1'>
+                                                <p><a href='actualizar_nomina.php?cod_empleado=".$empleados['cod_empleado']."' class='btn btn-info'>Actualizar nominas</a></p>
+                                                        <p><a href='editar_empleado.php?cod_empleado=".$empleados['cod_empleado']."' class='btn btn-warning'>Editar</a></p>
+                                                        <button type='button' class='btn btn-danger btnOpciones'>Borrar</button>
+                                                        <div class='panel-opciones' hidden>
+                                                            <p class='text-aviso fw-bold'>¿Esta seguro de que quiere borra este empleado?</p>
+                                                            <a href='../../back/acciones/borrar_empleado.php?id_empleado=".$empleados['cod_empleado']."' class='btn btn-primary'>Si</a>
+                                                            <button type='button' class='cancelarOpciones btn btn-danger'>No</button>
+                                                        </div>";
+                                                echo "</div>"; // fin opciones borra y editar
+                                            echo "</div>"; // fin bloque opciones
+                                        echo "</div>";// fin bloque con foto y opciones
+                                    echo "</div>"; // fin fila 2
+                                echo "</div>"; // fin desplegable
                         echo "</div>"; // fin card
                     echo "</section>"; // fin seccion empleado
-            }
-            echo "</div>"; // fin fila 1
-        echo "</div>"; // fin bloque empleados 
-    echo "</section>"; // fin seccion empleados
+                    }
+                echo "</div>"; // fin fila 1
+            echo "</div>"; // fin bloque empleados 
+        echo "</section>"; // fin seccion empleados
 echo "</main>";
         // cerramos conexion
         mysqli_close($conexion);

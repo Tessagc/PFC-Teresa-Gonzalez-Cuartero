@@ -59,29 +59,39 @@ echo "<main>";
 
                 echo "<section class='container-fluid mb-5'>";
         echo "<div class='p-4'>";
-            echo "<div class='row mx-auto justify-content-center'>";
+            echo "<div class='row mx-auto justify-content-right'>";
                 while ($empleados = mysqli_fetch_array($consulta2)) {
                     echo "<section class='col-md-6 col-6 col-12 mt-2'>";
                         echo "<div class='card shadow-sm rounded-4 p-3'>";
-                            echo "<div class='row'>";
-                                echo "<div class='col-md-8 col-12 d-flex flex-column justify-content-center'>";
-                                    echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Nombre: </strong>". $empleados['nombre']."</p>";
-                                    echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Apellidos: </strong>". $empleados['apellidos']."</p>";
-                                    echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Telefono: </strong>". $empleados['telefono_personal']."</p>";
-                                    echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Gmail personal: </strong>". $empleados['gmail_contacto']."</p>";
-                                    echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Gmail empresa: </strong>". $empleados['gmail_empresarial']."</p>";
-                                    echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Puesto: </strong>". $empleados['puesto']."</p>";
-                                    echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Estado: </strong>". $empleados['estado']."</p>";
-                                echo "</div>"; // fin datos
-                                echo "<div class='col-md-4 col-12 d-flex flex-column align-items-center justify-content-center'>";
-                                    echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Foto: </strong></p>";
-                                    if ($empleados['foto'] == "") {
-                                        echo "<img src='../../media/empleados/default.png' alt='foto generica' class='img-empleado  rounded-5'>";
-                                    } else {
-                                        echo "<img src='../../media/empleados/".$empleados['foto']."' alt='foto empleado' class='img-empleado  rounded-5'>";
-                                    }
-                                echo "</div>";// fin bloque con foto y opcioens
-                            echo "</div>"; // fin fila 2
+                            
+                            echo "<div class='card-header bg-white border-0 p-3'>"; // header card
+                                echo "<p class='fw-bold fs-5 d-flex justify-content-between align-items-center m-0'>";
+                                    echo $empleados['nombre']." ".$empleados['apellidos'];
+                                    echo "<a class='text-dark text-decoration-none fw-light' data-bs-toggle='collapse' href='#emp".$empleados['cod_empleado']."'>";
+                                    echo "Ver mas";
+                                echo "</a></p>";
+                            echo "</div>"; // fin header card
+                                
+                            echo "<div id='emp".$empleados['cod_empleado']."' class='collapse'>"; // desplegable
+                                echo "<div class='row'>";
+                                    echo "<div class='col-md-8 col-12 d-flex flex-column justify-content-center'>"; // datos
+                                        
+                                        echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Telefono: </strong>". $empleados['telefono_personal']."</p>";
+                                        echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Gmail personal: </strong>". $empleados['gmail_contacto']."</p>";
+                                        echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Gmail empresa: </strong>". $empleados['gmail_empresarial']."</p>";
+                                        echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Puesto: </strong>". $empleados['puesto']."</p>";
+                                        echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Estado: </strong>". $empleados['estado']."</p>";
+                                    echo "</div>"; // fin datos
+                                    echo "<div class='col-md-4 col-12 d-flex flex-column align-items-center justify-content-center'>"; // foto y opciones
+                                        echo "<p class='mb-2 fs-5'><strong class='titulo-pequeño'>Foto: </strong></p>";
+                                        if ($empleados['foto'] == "") {
+                                            echo "<img src='../../media/empleados/default.png' alt='foto generica' class='img-empleado  rounded-5'>";
+                                        } else {
+                                            echo "<img src='../../media/empleados/".$empleados['foto']."' alt='foto empleado' class='img-empleado  rounded-5'>";
+                                        }
+                                    echo "</div>";// fin bloque con foto y opcioens
+                                echo "</div>";// fin fila 2
+                            echo "</div>"; // fin desplegable
                         echo "</div>"; // fin card
                     echo "</section>"; // fin seccion empleado
             }

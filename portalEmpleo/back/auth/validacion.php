@@ -1,11 +1,12 @@
 <?php
     try {
         require("conexion_bbdd.php");
+        require_once("generar_siguentes_nominas.php");
     } catch (Throwable $th) {
         echo "Error al encontrar la bbdd";
     }
 
-    // falta la sesion
+    
 
     try {
         if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['enviar'])) {
@@ -22,6 +23,9 @@
 
             // proceso con bases de datos
             $conexion = mysqli_connect($servidor, $usuario, $contra, $bbdd);
+
+            // activar funcion de generacion automatica de nominas
+            generarNominasMesActual($conexion);
 
             $user=mysqli_real_escape_string($conexion, $user);
             $pass=mysqli_real_escape_string($conexion, $pass);

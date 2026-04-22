@@ -48,10 +48,10 @@ echo "</header>";
                 $consulta3 = mysqli_query($conexion, "SELECT * FROM nominas WHERE cod_empleado=".$_GET['cod_empleado']);
 echo "<main>";
             echo "<h2 class='text-center mt-5 mb-4 titulo-mediano fw-bold'>Ultimas nominas de ".$empleado['nombre']." ".$empleado['apellidos']."</h2>";
-            echo "<div class='row justify-content-center container mx-auto'>";
+            echo "<div class='row justify-content-right container mx-auto g-4'>";
                     while ($nominas_empleado = mysqli_fetch_array($consulta3)) {
                         echo "<div class='col-md-6 col-sm-12 mb-4'>";
-                            echo "<section class='border rounded p-3 mb-4 shadow-sm bg-light row'>";
+                            echo "<section class='border rounded p-3 mb-4 shadow-sm bg-light row mx-2'>";
                                 echo "<div class='col-md-6 col-sm-12 mb-4'>";
                                     echo "<p class='mb-2'><strong>Periodo:</strong> ".$nominas_empleado['periodo']." </p>";
                                     echo "<p class='mb-2'><strong>Sueldo bruto:</strong> ".$nominas_empleado['sueldo_base']." €</p>";

@@ -45,10 +45,10 @@
                 $consulta2 = mysqli_query($conexion, "SELECT * FROM nominas WHERE cod_empleado = ".$id_sesion_usuario);
                 
 
-                echo "<div class='row justify-content-center container mx-auto'>";
+                echo "<div class='row justify-content-right container mx-auto g-4'>";
                     while ($nomina_usuario = mysqli_fetch_array($consulta2)) {
-                        echo "<div class='col-md-6 col-sm-12 mb-4'>";
-                            echo "<section class='border rounded p-3 mb-4 shadow-sm bg-light row'>";
+                        echo "<div class='col-md-6 col-sm-12'>";
+                            echo "<section class='border rounded p-3 mb-4 shadow-sm bg-light row mx-2'>";
                                 echo "<div class='col-md-6 col-sm-12 mb-4'>";
                                     echo "<p class='mb-2'><strong>Periodo:</strong> ".$nomina_usuario['periodo']." </p>";
                                     echo "<p class='mb-2'><strong>Sueldo bruto:</strong> ".$nomina_usuario['sueldo_base']." €</p>";
