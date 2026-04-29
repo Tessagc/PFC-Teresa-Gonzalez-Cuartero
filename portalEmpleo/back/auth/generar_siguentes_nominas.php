@@ -7,6 +7,7 @@ function generarnominasMesActual($conexion) {
     if ($hecho) return;
     $hecho = true;
 
+    // consulta para la generacion de las nominas
     $generacion_nominas = "
         INSERT INTO nominas (
             cod_empleado,
@@ -18,8 +19,7 @@ function generarnominasMesActual($conexion) {
             desempleo,
             irpf,
             total
-        )
-        SELECT 
+        ) SELECT 
             n.cod_empleado,
             DATE_ADD(n.periodo, INTERVAL 1 MONTH),
             n.sueldo_base,
@@ -29,24 +29,18 @@ function generarnominasMesActual($conexion) {
             n.desempleo,
             n.irpf,
             n.total
-        FROM nominas n
-        JOIN (
+        FROM nominas n JOIN (
             SELECT cod_empleado, MAX(periodo) AS ultima_fecha
             FROM nominas
             GROUP BY cod_empleado
-        ) ult
-        ON n.cod_empleado = ult.cod_empleado
-        AND n.periodo = ult.ultima_fecha
-        WHERE 
-            -- 🔥 SOLO mes actual
-            DATE_FORMAT(DATE_ADD(n.periodo, INTERVAL 1 MONTH), '%Y-%m') = DATE_FORMAT(CURDATE(), '%Y-%m')
-            
-            AND NOT EXISTS (
-                SELECT 1
-                FROM nominas n2
-                WHERE n2.cod_empleado = n.cod_empleado
-                AND DATE_FORMAT(n2.periodo, '%Y-%m') = DATE_FORMAT(CURDATE(), '%Y-%m')
-            )
+        ) ult ON n.cod_empleado = ult.cod_empleado AND n.periodo = ult.ultima_fecha
+        WHERE DATE_FORMAT(DATE_ADD(n.periodo, INTERVAL 1 MONTH), '%Y-%m') = DATE_FORMAT(CURDATE(), '%Y-%m')        
+        AND NOT EXISTS (
+            SELECT 1
+            FROM nominas n2
+            WHERE n2.cod_empleado = n.cod_empleado
+            AND DATE_FORMAT(n2.periodo, '%Y-%m') = DATE_FORMAT(CURDATE(), '%Y-%m')
+        )
         ";
 
     mysqli_query($conexion, $generacion_nominas);

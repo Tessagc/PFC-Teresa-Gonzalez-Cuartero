@@ -53,12 +53,26 @@ echo "</header>";
 echo "<main>";
                 echo "<h2 class='text-center mt-5 mb-4 titulo-mediano fw-bold'>Empleados del departamento liderado por ".$usuario['nombre']." ".$usuario['apellidos']."</h2>";
 
-                // informacion de todos los empleados
-                $consulta2 = mysqli_query($conexion, "SELECT * FROM empleados WHERE cod_departamento = (SELECT cod_departamento FROM
-                departamentos WHERE cod_jefe_departamento = ".$id_sesion_usuario.") ORDER BY nombre ASC");
+                
 
                 echo "<section class='container-fluid mb-5'>";
         echo "<div class='p-4'>";
+            // boton para escoger el tipo de ordenacion
+                $orden = "ASC";
+
+                if (isset($_GET['ordenacion']) && $_GET['ordenacion'] === "DESC") {
+                    $orden = "DESC";
+                }
+
+                $nuevo_orden = ($orden === "ASC") ? "DESC" : "ASC";
+
+                // ordenar por
+                echo "<a href='?ordenacion=".$nuevo_orden."' class='btn btn-orden mx-3'>";
+                echo ($orden === "ASC") ? "Orden de Z → A" : "Orden de A → Z";
+                echo "</a>";
+                // informacion de todos los empleados
+                $consulta2 = mysqli_query($conexion, "SELECT * FROM empleados WHERE cod_departamento = (SELECT cod_departamento FROM
+                departamentos WHERE cod_jefe_departamento = ".$id_sesion_usuario.") ORDER BY nombre ".$orden);
             echo "<div class='row mx-auto justify-content-right'>";
                 while ($empleados = mysqli_fetch_array($consulta2)) {
                     echo "<section class='col-md-6 col-6 col-12 mt-2'>";
