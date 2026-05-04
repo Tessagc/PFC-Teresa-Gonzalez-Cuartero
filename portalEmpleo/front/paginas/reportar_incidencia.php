@@ -85,8 +85,8 @@
                     </div>
                     <div class='mb-3 container'>
                         <div class='container d-flex justify-content-between'>
-                            <input type='submit' value='Reportar' name='enviar' class='btn btn-secondary'>
-                            <input type='reset' value='Borrar' class='btn btn-primary'>
+                            <input type='submit' value='Reportar' name='enviar' class='btn btn-primary'>
+                            <input type='reset' value='Borrar' class='btn btn-secondary'>
                         </div>
                     </div>
                 </form>";
